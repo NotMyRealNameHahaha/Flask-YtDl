@@ -45,7 +45,7 @@ def my_converter(infile):
     better_outfile = str(filename + '.mp3')
 
     c = convert.converter.Converter(
-        ffmpeg_path="ffmpeg"
+        ffmpeg_path=find_ffmpeg()
         # ffmpeg_path=os.path.join(get_cwd(), "/YTR/convert/ffmpeg")
     )
     # Set the config for converter
@@ -62,7 +62,8 @@ def my_converter(infile):
                      options=options
                      )
     # return (x for x in conv)
-    iter(conv)
+    print("file_helpers -> converter -> conv == ", conv)
+    return (x for x in conv)
 
 
 # Check for video/mp3 files in current dir

@@ -23,13 +23,13 @@ def index():
 def dl():
     form = mod.UrlIn()
     if request.method == 'POST':
-        print(form.video_url.data)
         user_url = form.video_url.data
         get_name, get_url = YTR.ripper.my_YtDl.get_name(user_url)
         get_song = YTR.ripper.my_YtDl.Dl(get_name, get_url)
         get_song.download()
         # get_song.move_file()
-        get_song.convert_song()
+        # get_song.convert_song()
+        get_song.get_songs()
         return redirect(url_for('index'))
     return redirect(url_for('index'))
 

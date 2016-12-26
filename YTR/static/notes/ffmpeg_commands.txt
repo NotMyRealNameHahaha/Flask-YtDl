@@ -1,0 +1,26 @@
+
+##### Important To Remember:
+Audio bitrate default == 128k
+
+
+# Extract mp3 from video
+    #REF: http://www.catswhocode.com/blog/19-ffmpeg-commands-for-all-needs
+ffmpeg -i my_video.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 my_song.mp3
+
+
+# ELI5
+Explanations :
+    Source video : my_video.avi
+    Audio bitrate : 192kb/s
+    output format : mp3
+    Generated sound : sound.mp3
+
+
+Pipe commands to executable (aka binary)
+---------------------------------------
+#REF 1: http://stackoverflow.com/questions/13832786/how-do-i-send-commands-to-an-exe-running-through-the-command-line-with-batch
+#REF 2: http://stackoverflow.com/questions/18972156/how-to-pass-input-to-exe-in-batch-file
+
+# Example
+echo my_command | my_executable.exe
+

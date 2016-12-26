@@ -37,7 +37,7 @@ class Dl(object):
     cwd = os.getcwd()
     my_config = {
         'ydl_opp': {
-            'format': 'mp3/best',
+            'format': 'mp3/mp4',
             'extractaudio': True,
             'merge_output_format': 'mp4/webm',
             # 'audioformat': "mp3/webm",
@@ -73,10 +73,17 @@ class Dl(object):
     # Convert video to MP3
     def convert_song(self):
         for non_songs in file_helpers.music_dir():
-            if str(self.name) in non_songs:
-                print("found 'em!")
-            elif non_songs in str(self.name):
-                print("FOUND 'EM!  The elif was the ticket")
+            # if str(self.name) in non_songs:
+            #     print("found 'em!")
+            if non_songs in str(self.name):
+                pass
+
+    # Get songs in the music directory
+    @staticmethod
+    def get_songs():
+        songs = file_helpers.all_files(file_helpers.music_dir())[0]
+        print("my_ytdl -> get_songs -> songs == ", songs)
+        return file_helpers.my_converter(songs)
 
 
 def my_test():

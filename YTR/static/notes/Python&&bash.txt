@@ -1,0 +1,23 @@
+
+
+# For Python versions >= 3.5
+>>> from subprocess import run
+>>> run("ls", shell=True)
+ffmpeg
+music
+open_html.sh
+requirements.txt
+runserver.py
+list_of_todos.txt
+YTR
+CompletedProcess(args='ls', returncode=0)
+
+
+
+
+
+
+# For Python versions < 3.5
+    # REF: http://stackoverflow.com/questions/89228/calling-an-external-command-in-python
+from subprocess import call
+call(["ls, "-l"])
