@@ -14,10 +14,25 @@ CompletedProcess(args='ls', returncode=0)
 
 
 
+# Passing variables to subprocess.run
+-------------------------------------
+
+# simple example
+>>> from subprocess import run
+>>> my_cmd = "ls"
+>>> run(my_cmd, shell=True)
+ffmpeg
+music
+open_html.sh
+# etc etc
+
+
+
 
 
 
 # For Python versions < 3.5
+-------------------------------------------
     # REF: http://stackoverflow.com/questions/89228/calling-an-external-command-in-python
 from subprocess import call
 call(["ls, "-l"])

@@ -5,7 +5,6 @@ import os
 # import ffmpy
 # Project imports
 # from convert import convert.converter as converter
-from YTR import convert
 
 
 # Directory helpers
@@ -44,7 +43,7 @@ def my_converter(infile):
     filename, file_extension = os.path.splitext(infile)
     better_outfile = str(filename + '.mp3')
 
-    c = convert.converter.Converter(
+    c = YTR.convert.converter.Converter(
         ffmpeg_path=find_ffmpeg()
         # ffmpeg_path=os.path.join(get_cwd(), "/YTR/convert/ffmpeg")
     )
