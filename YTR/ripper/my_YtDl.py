@@ -1,10 +1,11 @@
 # Python imports
 import os
+from urllib import parse
+from subprocess import run
 # Dependencies
 from youtube_dl import YoutubeDL
 # Project Imports
 from YTR.ripper import file_helpers
-from YTR import convert
 
 
 class MyLogger(object):
@@ -25,9 +26,13 @@ def my_hook(d):
 
 # Get the name of the video (song)
 def get_name(my_url):
-    mdl = YoutubeDL({'outtmpl': '%(title)s'})
-    video_name = mdl.extract_info(my_url, download=False)
-    return my_url, str(video_name)
+    with YoutubeDL({'outtmpl': '%(title)s'}) as ydl:
+        video_info = ydl.extract_info(my_url, download=False)
+        video_name = video_info.get('title', None)
+    return my_url, video_name
+    # mdl = YoutubeDL({'outtmpl': '%(title)s'})
+    # video_name = mdl.extract_info(my_url, download=False)
+    # return my_url, str(video_name)
 
 
 # download self.link
@@ -35,54 +40,48 @@ class Dl(object):
     # Get current directory
     # cd = os.path.dirname(os.path.abspath(__file__))
     cwd = os.getcwd()
-    my_config = {
-        'ydl_opp': {
-            'format': 'mp3/mp4',
-            'extractaudio': True,
-            'merge_output_format': 'mp4/webm',
-            # 'audioformat': "mp3/webm",
-            'audioformat': 'mp3',
-            'noplaylist': True,
-            'outtmpl': '%(title)s.%(ext)s',
-            'ffmpeg_location': file_helpers.find_ffmpeg(),
-            'prefer_ffmpeg': True,
-            'restrictfilenames': True,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'logger': MyLogger(),
-            # 'progress_hooks': [my_hook],
-        }
-    }
 
     def __init__(self, link, name):
         self.link = link
         self.name = name
 
     def download(self):
-        with YoutubeDL(Dl.my_config) as ydl:
+        my_config = {
+            'ydl_opp': {
+                'format': 'mp3/mp4',
+                'extractaudio': True,
+                'merge_output_format': 'mp4/webm',
+                # 'audioformat': "mp3/webm",
+                'audioformat': 'mp3',
+                'noplaylist': True,
+                'outtmpl': '%(title)s.%(ext)s',
+                'ffmpeg_location': file_helpers.find_ffmpeg(),
+                'prefer_ffmpeg': True,
+                'restrictfilenames': True,
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }],
+                'logger': MyLogger(),
+                # 'progress_hooks': [my_hook],
+            }
+        }
+        with YoutubeDL(my_config) as ydl:
             ydl.download([str(self.link)])
-        file_helpers.clean_dir()
-
-    def move_file(self):
-        music_dir = os.path.join(Dl.cwd, "music")
-        return str(self.link + music_dir)
+        # file_helpers.clean_dir()
 
     # Convert video to MP3
     def convert_song(self):
-        for non_songs in file_helpers.music_dir():
-            # if str(self.name) in non_songs:
-            #     print("found 'em!")
-            if non_songs in str(self.name):
-                pass
+        # subprocess.call('ffmpeg -r 10 -i frame%03d.png -r ntsc '+str(out_movie),
+        #         shell=True)
+        return self.name
 
     # Get songs in the music directory
     @staticmethod
     def get_songs():
         songs = file_helpers.all_files(file_helpers.music_dir())[0]
-        print("my_ytdl -> get_songs -> songs == ", songs)
+        # print("my_ytdl -> get_songs -> songs == ", songs)
         return file_helpers.my_converter(songs)
 
 

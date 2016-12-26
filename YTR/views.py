@@ -1,5 +1,5 @@
 # Python imports
-
+import json
 # Flask Imports
 from flask import render_template, redirect, url_for, request
 from flask_wtf.csrf import CsrfProtect
@@ -24,12 +24,17 @@ def dl():
     form = mod.UrlIn()
     if request.method == 'POST':
         user_url = form.video_url.data
-        get_name, get_url = YTR.ripper.my_YtDl.get_name(user_url)
-        get_song = YTR.ripper.my_YtDl.Dl(get_name, get_url)
+        get_url, get_name = YTR.ripper.my_YtDl.get_name(user_url)
+        # Set up the download class
+        get_song = YTR.ripper.my_YtDl.Dl(link=get_url,
+                                         name=get_name)
+        # Download the bitch
         get_song.download()
         # get_song.move_file()
         # get_song.convert_song()
         get_song.get_songs()
+        print("video url == ", get_name)
+        print("Video name == ", get_url)
         return redirect(url_for('index'))
     return redirect(url_for('index'))
 

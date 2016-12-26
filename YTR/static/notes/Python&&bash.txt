@@ -1,4 +1,9 @@
 
+#### Stuff to remember
+$ pwd
+/path/to/current/directory/my_dir
+
+
 
 # For Python versions >= 3.5
 >>> from subprocess import run

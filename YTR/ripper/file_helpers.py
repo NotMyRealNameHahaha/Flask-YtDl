@@ -5,6 +5,7 @@ import os
 # import ffmpy
 # Project imports
 # from convert import convert.converter as converter
+import YTR.convert
 
 
 # Directory helpers
@@ -35,34 +36,7 @@ def find_ffmpeg():
         if my_files == "ffmpeg":
             return os.path.abspath(my_files)
         else:
-            print("Nope, didn't find ffmpeg")
-
-
-# Uses converter module to connect to FFmpeg && convert to mp3
-def my_converter(infile):
-    filename, file_extension = os.path.splitext(infile)
-    better_outfile = str(filename + '.mp3')
-
-    c = YTR.convert.converter.Converter(
-        ffmpeg_path=find_ffmpeg()
-        # ffmpeg_path=os.path.join(get_cwd(), "/YTR/convert/ffmpeg")
-    )
-    # Set the config for converter
-    options = {
-        'format': 'mp3',
-        'audio': {
-            'codec': 'mp3',
-            'bitrate': '22050',
-            'channels': 1
-        }
-    }
-    conv = c.convert(infile=infile,
-                     outfile=better_outfile,
-                     options=options
-                     )
-    # return (x for x in conv)
-    print("file_helpers -> converter -> conv == ", conv)
-    return (x for x in conv)
+            return False
 
 
 # Check for video/mp3 files in current dir
@@ -88,4 +62,32 @@ def mp_check():
         if ".mp3" not in my_files[-4:]:
             print(".mp3 is not in -> " + my_files)
             my_converter(my_files)
-    # print(os.listdir(music_dir()))
+            # print(os.listdir(music_dir()))
+
+
+# Uses converter module to connect to FFmpeg && convert to mp3
+def my_converter(infile):
+    filename, file_extension = os.path.splitext(infile)
+    better_outfile = str(filename + '.mp3')
+
+    c = YTR.convert.Converter(
+        ffmpeg_path=find_ffmpeg()
+    )
+    # Set the config for converter
+    options = {
+        'format': 'mp3',
+        'audio': {
+            'codec': 'mp3',
+            'bitrate': '22050',
+            'channels': 1
+        }
+    }
+    conv = c.convert(infile=infile,
+                     outfile=better_outfile,
+                     options=options
+                     )
+    # return (x for x in conv)
+    print("file_helpers -> converter -> conv == ", conv)
+    return (x for x in conv)
+
+
