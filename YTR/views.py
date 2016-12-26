@@ -27,14 +27,14 @@ def dl():
         user_url = form.video_url.data
         get_name, get_url = YTR.ripper.my_YtDl.get_name(user_url)
         get_song = YTR.ripper.my_YtDl.Dl(get_name, get_url)
-        # get_song.download()
-        get_song.convert_download()
+        get_song.download()
+        # get_song.move_file()
+        get_song.convert_song()
         return redirect(url_for('index'))
     return redirect(url_for('index'))
 
 """
 Notes:
-
 
 
 """

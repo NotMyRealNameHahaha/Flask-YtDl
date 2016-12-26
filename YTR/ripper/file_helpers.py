@@ -15,8 +15,28 @@ def get_cwd():
     return os.getcwd()
 
 
+# Get the 'music' directory
 def music_dir():
-    return os.path.join(os.getcwd(), "music/")
+    for my_dirs in os.listdir(get_cwd()):
+        if "music" in my_dirs:
+            return os.path.abspath(my_dirs)
+        else:
+            pass
+
+
+# Return files in a certain directory
+def all_files(which_dir):
+    for songs in os.fwalk(which_dir):
+        return songs[2]
+
+
+# Get path for FFmpeg
+def find_ffmpeg():
+    for my_files in os.listdir(os.getcwd()):
+        if my_files == "ffmpeg":
+            return os.path.abspath(my_files)
+        else:
+            print("Nope, didn't find ffmpeg")
 
 
 # Uses converter module to connect to FFmpeg && convert to mp3
@@ -57,11 +77,13 @@ def clean_dir():
             # print(filename, end='')
         elif ".mp3" in filename[-4:]:
             os.rename(filename, "music/" + filename)
+        else:
+            pass
 
 
 # Check the cwd/music folder for non-MP3 files
 # If a non-mp3 file exists, run it through converter
-def soundcheck():
+def mp_check():
     for my_files in os.listdir(music_dir()):
         if ".mp3" not in my_files[-4:]:
             print(".mp3 is not in -> " + my_files)
