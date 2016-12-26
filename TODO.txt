@@ -1,0 +1,4 @@
+1. Take notes on styles for each component
+   - Think of that aspect like CSS
+
+2. Grasp functionality.  Ex grabbing text from an input

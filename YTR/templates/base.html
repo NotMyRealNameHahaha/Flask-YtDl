@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YTR</title>
+{# Main CSS  #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/devicons&fa.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adderall.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/YTR.css') }}" />
+    <script src="{{ url_for('static', filename='js/prefixfree.js') }}"></script>
+{% block style %}
+{% endblock %}
+</head>
+<body>
+    <header>
+        <h1 class="t-c t-bblue">YTR</h1>
+    </header>
+    {# Insert header above here #}
+    {% block bod %}
+    {% endblock %}
+
+    {# vv Add Scripts vv #}
+    <script src="{{ url_for('static', filename='js/ookillem.js') }}" ></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

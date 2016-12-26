@@ -1,0 +1,1076 @@
+
+/*-----------*  Quick Reference  *---------*/
+
+/*--   Colors  --*/
+
+/* That matrix-esque bright green */
+.matrix {
+    background: #02ff53;
+    color: rgb(2, 255, 83);
+}
+
+/* For toggle switches */
+.iphone {
+    background: #4caf50;
+}
+
+/* Dark Blue (beautiful) */
+.dblue {
+    background: #001d2c;
+    color: rgb(0, 29, 44);
+}
+
+/* Moderate Blue */
+.mblue {
+    background: #107dc1;
+    color: rgb(16, 125, 193);
+}
+
+/* Bright blue */
+.bblue {
+    background: #00a0e1;
+    color: rgb(0, 160, 225);
+}
+
+
+
+
+/* Imports */
+@font-face {
+  font-family: "FontAwesome";
+  src: url(../fonts/fontawesome-webfont.ttf),
+  url(../fonts/fontawesome-webfont.woff2), url(../fonts/FontAwesome.otf);
+}
+@font-face {
+  font-family: 'open sans', sans-serif;
+  src: url(../fonts/OpenSans-Regular.ttf); font-weight: 400;
+}
+@font-face {
+  font-family: 'open sans', sans-serif;
+  src: url(../fonts/OpenSans-Semibold.ttf); font-weight: 600;
+}
+@font-face {
+  font-family: 'open sans', sans-serif;
+  src: url(../fonts/OpenSans-Semibold.ttf); font-weight: bold;
+}
+@font-face {
+  font-family: 'robot', sans-serif;
+  src: url(../fonts/Roboto-Regular.ttf); font-weight: 400;
+}
+
+@font-face {
+  font-family: 'robot', sans-serif;
+  src: url(../fonts/Roboto-Medium.ttf); font-weight: 600;
+}
+@font-face {
+  font-family: 'robot', sans-serif;
+  src: url(../fonts/Roboto-Bold.ttf); font-weight: 700;
+}
+@font-face {
+  font-family: 'robot', sans-serif;
+  src: url(../fonts/Roboto-Bold.ttf); font-weight: bold;
+}
+
+
+
+/* Globals */
+* { box-sizing: border-box; }
+body {
+    width: 100%; max-width: 100%;
+    background: black; height: auto;
+    overflow-x: hidden;
+    padding: 0; margin: 0;
+}
+
+input, button { outline: none;}
+
+a { text-decoration: none; }
+
+div, span, input, button, a, p, h1, h2, h3, h4 {
+    box-sizing: border-box;
+}
+
+
+/*
+ *
+ *
+ * Text
+ *--------------*/
+h1, h2, h3, h4 {
+    font-family: 'robot', sans-serif;
+    letter-spacing: 1px; line-height: 110%;
+    text-transform: capitalize;
+}
+
+h1, h2 { font-weight: 700;}
+
+h3, h4 { font-weight: 400; }
+
+h1 { font-size: 2.5em;  }
+
+h2 { font-size: 2.0em; }
+
+h3 { font-size: 1.5em; }
+
+h4 { font-size: 1.0em; }
+
+p, div {
+    font-family: 'open sans', sans-serif;
+    letter-spacing: 1px; line-height: 110%;
+}
+
+p { font-size: 14px; font-weight: 400; }
+
+
+
+
+
+/*
+*
+*
+*
+*   Buttons     Buttons     Buttons
+*----------------------------------*
+*------ #ffbuttons -----------------*
+*------------------------------------*/
+
+/* Generic button */
+.bt {
+    width: auto; height: auto;
+    padding: 10px 15px; box-sizing: border-box;
+    display: inline-flex; margin: auto;
+    justify-content: center; align-content: center;
+    align-items: center; flex-wrap: wrap;
+
+    border-top-left-radius: 7% 12%;
+    border-top-right-radius: 7% 12%;
+    border-bottom-right-radius: 7% 12%;
+    border-bottom-left-radius: 7% 12%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                    0 3px 1px -2px rgba(0,0,0,.2),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    font: inherit; font-size: 120%;
+}
+
+/* Generic button -> Children */
+.bt:nth-child(1) {  margin: auto; align-self: center; }
+
+
+/* Circular Button */
+.bt-c {
+
+    width: auto; height: auto;
+    display: inline-flex; margin: auto;
+    justify-content: center; align-content: center;
+    align-items: center; flex-wrap: wrap;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.12),
+                    0 1px 1px 0 rgba(0,0,0,.24);
+
+    font: inherit; font-size: 120%;
+}
+
+
+
+
+/*
+ *
+ *
+ *
+ *
+ * Layout
+ *-------*
+ *--------------------------*/
+
+/*-----*   MAIN Containers   *-------*/
+
+/* Generic full width */
+.full {
+    width: 3000px; max-width: 100%;
+    height: auto; display: block;
+    margin: auto; padding: 10px;
+}
+
+/* Full -> flex box */
+.fb {
+    width: 3000px; max-width: 100%;
+    height: auto; margin: auto;
+    display: flex; flex-wrap: wrap;
+}
+
+/* Full -> inline-flex, align center */
+.fbi {
+    width: 3000px; max-width: 100%;
+    height: auto; margin: auto;
+    display: inline-flex; flex-wrap: wrap;
+    justify-content: center; align-content: center;
+    align-items: center;
+}
+
+/* Full -> Flex Box -> Center */
+.fb-c {
+    width: 3000px; max-width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; align-content: center;
+}
+
+
+/*--  Quickly add display options   --*/
+.flex {display: flex;}
+.iflex { display: inline-flex; }
+.block {display: block;}
+
+
+/*--  Add display options with width  --*/
+.flex-small, .iflex-small, .block-small {
+    width: 250px; max-width: 100%;
+}
+.flex-med, .iflex-med, .block-med {
+    width: 500px; max-width: 100%;
+}
+.flex-lg, .iflex-lg, .block-lg {
+    width: 700px; max-width: 100%;
+}
+.flex-small, .flex-med, .flex-lg { display: flex;  flex-wrap: wrap;}
+.iflex-small, .iflex-med, .iflex-lg { display: inline-flex; flex-wrap: wrap;}
+.block-small, .block-med, .block-lg { display: block; margin: auto;}
+
+/*-----*  Child Containers *-------*/
+
+/* Generic */
+.c {
+    width: auto; max-width: 100%;
+    height: auto; margin: auto;
+    padding: 10px; box-sizing: border-box;
+}
+
+/*-- Explicit size --*/
+
+/* Small */
+.c-small {
+   width: 250px; max-width: 100%;
+    height: auto; margin: auto;
+    padding: 10px; box-sizing: border-box;
+}
+
+/* Medium */
+.c-med {
+    width: 500px; max-width: 100%;
+    height: auto; margin: auto;
+    padding: 10px; box-sizing: border-box;
+}
+
+/* Large */
+.c-lg {
+    width: 700px; max-width: 100%;
+    height: auto; margin: auto;
+    padding: 10px; box-sizing: border-box;
+}
+
+
+@media only screen and (min-width: 700px) {
+
+  /* Percentage based sizing -> Desktop */
+    .cd-full { width: 3000px; max-width: 100%; }
+    .cd-ninefive { width: 3000px; max-width: 95%;}
+    .cd-half { width: 1500px; max-width: 50%; }
+    .cd-third { width: 3000px; max-width: 33%; }
+    .cd-fourth { width: 3000px; max-width: 25%; }
+    .cd-fifth { width: 3000px; max-width: 20%; }
+}
+
+@media only screen and (max-width: 700px) {
+
+  /* Percentage based sizing -> Mobile */
+    .cm-full { width: 3000px; max-width: 100%; }
+    .cm-ninefive { width: 3000px; max-width: 95%;}
+    .cm-half { width: 1500px; max-width: 50%; }
+    .cm-third { width: 3000px; max-width: 33%; }
+    .cm-fourth { width: 3000px; max-width: 25%; }
+    .cm-fifth { width: 3000px; max-width: 20%; }
+}
+
+
+
+/*-----*  Alignment Containers *-------*/
+/* stretch */
+.c-stretch { align-content: stretch; }
+
+/* Center */
+.c-center { align-content: center; }
+
+/* Start */
+.c-start { align-content: flex-start; }
+
+
+/* Note, child container alignments must be written AFTER the size */
+/* Child container -> Align left */
+.c-left { margin: auto auto auto 0; }
+
+/* Child container -> Align right */
+.c-right { margin: auto 0 auto auto; }
+
+
+
+
+/*
+*
+* Background colors
+*--------------------------------*/
+
+/* Matrix Green */
+.bg-green {
+    background: #02ff53;
+    color: white; text-shadow: 1px 1px rgba(0, 0, 0, 0.5), 2px 2px 5px black;
+}
+
+/* Dark Blue (beautiful) */
+.dblue {
+    background: #001d2c;
+    /*color: rgb(0, 29, 44);*/
+    color: white; text-shadow: 1px 1px rgba(0, 0, 0, 0.5), 2px 2px 5px black;
+}
+
+/* Moderate Blue */
+.mblue {
+    background: #107dc1;
+    /*color: rgb(16, 125, 193);*/
+    color: #001d2c; text-shadow: 1px 1px rgba(255, 255, 255, 0.5), 2px 2px 5px white;
+}
+
+/* Bright blue */
+.bblue {
+    background: #00a0e1;
+    /*color: rgb(0, 160, 225);*/
+    color: #001d2c; text-shadow: 1px 1px rgba(255, 255, 255, 0.5), 2px 2px 5px white;
+}
+
+
+/*--  Greys  --*/
+.bashy, .lgrey {background: #e8e8e8;}
+.lmgrey { background: #b4b4b4;}
+.mgrey {background: #757575;}
+.dgrey {background: #1e1e1e;}
+.black { background: black;}
+
+
+/*
+ *
+ *
+ *
+ *
+ * Borders && Shadows
+ *--------------------------*
+ *--------------------------*/
+
+/* No-Border*/
+.b-no { border: none;}
+
+/*---   Shadows   ----*/
+.s-far { box-shadow: 2px 1px black, 0 0 20px black, 0 0 30px rgba(0, 0, 0, 0.5)}
+.s-near { box-shadow: 2px 1px black, 0 0 10px black, 0 0 30px rgba(0, 0, 0, 0.2)}
+
+
+
+
+
+/*
+ *
+ *
+ *
+ *
+ * Font colors && sizes
+ *--------------------------*
+ *--------------------------*/
+
+/*--   Sizes   --*/
+
+/* Smaller */
+.t-fif { font-size: 20%; }
+.t-quarter { font-size: 25%; }
+.t-third { font-size: 33%; }
+.t-half { font-size: 50%; }
+/* Three-quarters */
+.t-75 { font-size: 75%; }
+/* 80% */
+.t-80 { font-size: 80%; }
+ /* 90% */
+.t-90 { font-size: 90%; }
+
+
+ /* Bigger */
+.t-110 { font-size: 110%; }
+.t-125 { font-size: 125%; }
+.t-150 { font-size: 150%; }
+
+
+
+/*--   Font-Colors  ** NO SHADOWS ** --*/
+/* Black */
+    .t-black { color: black; }
+/* White */
+    .t-white { color: white; }
+/* Ashy */
+    .t-ashy { color: #e8e8e8;}
+/* Green */
+    .t-matrix { color: #02ff53;}
+/* Dark blue */
+    .t-dblue { color: #001d2c; }
+/* Moderate blue*/
+    .t-mblue { color: #107dc1;}
+/* Light blue */
+    .t-bblue { color: #00a0e1; }
+
+
+/*--   Font-Colors  ** WITH SHADOWS ** --*/
+/* Black */
+    .ts-black { color: black; text-shadow: 2px 1px white; }
+/* White*/
+    .ts-white { color: white; text-shadow: 2px 1px black; }
+/* Ashy */
+    .ts-ashy { color: #e8e8e8; text-shadow: 2px 1px black; }
+ /* Green    */
+    .ts-matrix { color: #02ff53; text-shadow: 2px 1px black; }
+/* Dark blue */
+    .ts-dblue { color: #001d2c; text-shadow: 2px 1px white; }
+/* Moderate blue*/
+    .ts-mblue { color: #107dc1; text-shadow: 2px 1px black; }
+/* Light blue */
+    .ts-bblue { color: #00a0e1; text-shadow: 2px 1px black; }
+
+
+
+
+/*-----------------*     Text alignment     *--------------------*/
+.t-l { text-align: left; margin: auto auto auto 0; }
+.t-r { text-align: right; margin: auto 0 auto auto; }
+.t-c { text-align: center; margin: auto; }
+
+
+
+
+
+
+/*
+ *  Text-heavy containers
+ *
+ *
+ *--------------------------*/
+
+
+ /* Typical card-style container */
+.t-box {
+    width: 95%; max-width: 95%;
+    height: auto;
+    padding: 10px; box-sizing: border-box;
+    margin: auto;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                    0 3px 1px -2px rgba(0,0,0,.2),
+                    0 1px 5px 0 rgba(0,0,0,.12)
+}
+
+
+
+
+
+/* Google-Style "card" container
+ *------------------------------*
+
+ # Example usage:
+ div .card
+     div .main
+          img src="example.com/randomimage"
+          p  | a couple of words
+
+     div .desc
+         p | A couple of sentences describing this thing
+     div .cta
+         button |  This is a call to action button
+ */
+
+.card {
+    width: 3000px; max-width: 98%;
+    height: auto; margin: auto;
+    position: relative; z-index: 10;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.2),
+                    0 3px 1px -2px rgba(0,0,0,.25),
+                    0 1px 5px 0 rgba(0,0,0,.15);
+    font: inherit;
+}
+
+.card .main, .card .main p, .card .desc,
+    .card .desc p, .card .cta,
+    .card .cta button {
+        height: auto; margin: auto; box-sizing: border-box;
+        position: relative; text-decoration: none;
+    }
+
+    .card .main {
+        width: 100%;
+        padding: 0;
+        z-index: inherit;
+        display: flex;
+        align-content: flex-start; flex-wrap: wrap;
+    }
+
+        .card .main img {
+            width: 100%; max-width: 100%;
+            height: auto;
+            padding: 0;
+            position: relative; z-index: inherit;
+        }
+
+        /* A word or two */
+        .card .main p {
+            width: auto;
+            margin: auto auto 2px auto;
+            top: 90%; bottom: 0;
+            padding: 10px; box-sizing: border-box;
+            z-index: 11;
+            align-self: flex-end;
+            font: inherit;
+            font-size: 120%;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,.2),
+                            1px 2px 0 rgba(0,0,0,.25),
+                            0 1px 2px rgba(0,0,0,.15);
+        }
+
+    /* Short description */
+    .card .desc {
+        width: 100%;
+        padding: 5px 10px;
+        font: inherit;
+        border-bottom: 1px solid #cccccc;
+    }
+        .card .desc p { font: inherit; text-align: left; }
+
+    /* Call to action */
+    .card .cta {
+        width: 100%;
+        padding: 5px 10px; text-transform: capitalize;
+    }
+        .card .cta button {
+            width: auto; padding: 10px;
+            text-decoration: none; font-size: 120%; text-transform: capitalize;
+        }
+        .card a { text-decoration: none; }
+
+
+
+
+
+
+/*----  Text Pill  ----*
+
+*----------------------------------------------------------------------*
+ Container w/ big text on the left, small text on the right.
+        - Left side has the same background as the rest of the container
+        - Right side has a different background
+
+# Example Usage:
+div .t-pill
+    .first
+        p |  Some text on the left
+    .second
+        p |  Other text on the right
+
+*-----------------------------------------------------------------------*/
+
+
+
+/* Don't forget to set background && / or  font-colors */
+.t-pill {
+    width: 900px;
+    max-width: 90%;
+    height: 100px;
+    margin: 30px auto;
+
+    display: flex; flex-wrap: nowrap;
+    justify-content: flex-start; align-items: stretch;
+    border: none; border-radius: 15px;
+}
+
+    .t-pill .first, .t-pill .second {
+        font: inherit; box-sizing: border-box;
+        height: 100%; text-align: center;
+        margin: auto;
+    }
+    .t-pill .first {
+        width: 175px; max-width: 30%;
+        align-self: stretch;
+
+        background: transparent;
+        font: inherit;
+        font-size: 125%;
+        text-align: center; font-weight: 700;
+    }
+
+    .t-pill .second {
+        width: 500px; max-width: 70%;
+        align-self: center;
+        padding: 10px 25px;
+
+        font-size: 115%;
+        border-top-right-radius: inherit; border-bottom-right-radius: inherit;
+    }
+
+
+
+
+
+/*
+  # Animation reference
+
+.foo {
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+*/
+
+/*
+ *
+ *
+ *
+ *
+ *     Modals  Modals   Modals
+ *------------------------------*
+ *------------------------------*/
+/* Example Usage:
+
+# main modal container
+div .modal-c
+    div .something
+        p | Some text you want to show before the modal popup
+
+    div .modal
+        button .close
+        div .mod-bod
+            p | Random text inside the modal
+
+*/
+
+/* container for when the modal is NOT visible */
+.modal-c { all: inherit;}
+.modal-c:first-child { all: inherit; }
+
+.modal-c, .modal-c .modal, .modal-c:nth-child(1), .modal:nth-child(1) { box-sizing: border-box; }
+/* Container for the actual modal */
+.modal-c .modal {
+    width: 95%; height: 95%;
+    display: none;
+    margin: auto;
+    padding: 10px;
+    top: 100px;
+    left: 0; right: 0;
+    position: static;
+    z-index: 800;
+
+    background: #1e1e1e;
+    font-family: 'open sans', sans-serif;
+    color: white; text-shadow: 1px 1px black;
+    overflow-x: hidden; overflow-y: auto;
+}
+
+.modal-c .modal.active { display: block; }
+
+    .modal-c .modal:after {
+        width: 100%; height: 100%;
+        position: static;
+        z-index: 700; background: rgba(0,0,0,0.4);
+    }
+
+    .modal-c .modal .close {
+        width: 25px; height: 25px;
+        display: flex; align-content: center;
+        position: relative;
+        justify-content: center;
+        margin: auto 0 auto auto; right: 10px;
+
+        background: #e8e8e8;
+        color: black; text-shadow: 1px 1px black;
+    }
+
+    .modal-c .modal .mod-bod, .modal-c .modal .mod-bod p {
+        width: 100%; height: auto;
+        margin: auto;
+
+        font: inherit;
+        font-size: 14px; line-height: 110%; letter-spacing: 1px;
+        color: black; text-shadow: 1px 1px black;
+        background: inherit;
+    }
+
+
+
+
+
+/*
+ *
+ *
+ *
+ *
+ *     Slider   Slideshow   Carousel
+ *----------------------------------*
+ *-----------------------------------*/
+/* Example Usage:
+
+# main modal container
+div .slider
+    div .slide
+        img
+        p, div, whatever
+
+    div .slide
+        img
+        p, div, etc
+
+    button .pre  |  &#10094;
+    button .nxt  |  &#10095;
+
+*/
+
+/* Slider container */
+.slider {
+    width: 100%; height: auto;
+    margin: auto; padding: 0;
+    display: flex; align-content: stretch;
+
+}
+
+.slider, .slide {
+    position: relative; z-index: 100;
+}
+
+.slider .slide {
+    width: 100%;
+    padding: 0;
+    margin: auto;
+    align-self: stretch;
+    display: none;
+}
+/* When you add the active class to .slide, it flexes */
+.slider .slide.active {
+    display: flex; flex-wrap: wrap;
+}
+
+
+.slider .pre, .slider .nxt {
+    width: auto;
+    top: 50%;
+    padding: 16px;
+    margin-top: -22px;
+    position: absolute;
+
+    font-size: 18px;
+    color: white; text-shadow: 1px 1px black, 0 0 5px black;
+    font-weight: bold;
+
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+} .slider .pre:hover, .slider .nxt:hover { background: rgba(0, 0, 0, 0.8); }
+
+
+.slider .pre { left: 10px; }
+.slider .nxt { right: 10px; }
+
+
+
+
+
+/*
+ *
+ *
+ *  Style the range input
+ *-----------------------*/
+
+input[type=range] label {
+    font: inherit;
+    height: 15px; width: 140px;
+    text-align: left;
+    /*margin: auto auto auto 22%;  left: 0;*/
+    /*display: block;*/
+    position: absolute;
+    left: 18.5%; top: 8px;
+}
+
+
+/*  This is where the RANGE output is displayed
+----------------------------------------------*/
+input[type=range] output {
+    width: 120px; max-width: 100%;
+    height: 45px;
+    margin: 10px auto 40px auto;
+    padding: 15px;
+    display: block; box-sizing: border-box;
+    position: relative;
+    z-index: 100;
+    background: #104b64;
+    font: inherit; font-size: 110%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2),
+                -2px 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+input[type=range] output:after {
+    position: absolute; content: "";
+    z-index: 101;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #104b64;
+    top: 45px; right: 40%;
+}
+
+/* The (tuition) input==range slider */
+input[type=range] {
+    width: 500px; max-width: 90%; margin: auto;
+    border: 1px solid white; -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 700px; height: 5px;
+    background: #ddd; border: none;  border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    height: 25px; width: 25px; margin-top: -12px;
+    border-radius: 50%; border: none;
+    background: #2196F3;    -webkit-appearance: none;
+
+}
+input[type=range]:focus { outline: none; }
+input[type=range]:focus::-webkit-slider-runnable-track { background: #ccc; }
+
+input[type=range]::-moz-range-track {
+    width: 700px; height: 5px;
+    background: #ddd;
+    border: none;  border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    height: 25px; width: 25px;
+    border: none; border-radius: 50%; background: #2196F3;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{ outline: 1px solid white; outline-offset: -1px;}
+
+input[type=range]::-ms-track {
+    width: 700px; height: 5px;
+    background: transparent;  border-color: transparent; border-width: 6px 0;
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower { background: #777; border-radius: 10px;  }
+input[type=range]::-ms-fill-upper {  background: #ddd; border-radius: 10px; }
+input[type=range]::-ms-thumb {
+    height: 25px; width: 25px;
+    border: none; border-radius: 50%; background: #2196F3;
+}
+input[type=range]:focus::-ms-fill-lower { background: #888;}
+input[type=range]:focus::-ms-fill-upper { background: #ccc; }
+
+
+
+/*
+*
+*  Header
+*---------------------------------*
+*---------------------------------*/
+
+header {
+    width: 3000px; max-width: 100%;
+    height: 70px; max-height: 100%;
+    margin: auto;
+    padding: 10px 0 0 0;
+    display: flex; flex-wrap: wrap;
+    align-content: center;
+
+    font-family: 'robot', sans-serif;
+    color: white; font-size: 16px;
+    /*border-bottom: 1px solid #1e1e1e;*/
+    position: relative;
+    background: black;
+    z-index: 900;
+}
+
+header .logo {
+    width: auto;
+    height: auto; max-height: 100%;
+    margin: auto auto auto 10px;
+    padding: 10px; align-self: flex-end;
+    position: relative;
+}
+header .logo img {
+    width: 50px; height: auto;
+}
+
+
+/* Container for nav links */
+header .nav-c {
+    width: 75%; background: inherit;
+}
+header .nav-c .nav.last { border: transparent; }
+
+
+/* Header -> Desktop */
+@media only screen and (min-width: 701px) {
+    /* Button to show/hide nav bar */
+    header button {
+        display: none; position: relative;
+    }
+    header .nav-c {
+        height: 75px; max-height: 100%;
+        margin: auto 10% auto auto;
+        padding: 0 20px; box-sizing: border-box;
+        display: flex; position: relative;
+        justify-content: flex-end;
+        align-content: center; align-self: stretch;
+        font-size: 20px;
+        z-index: 900;
+    }
+    header .nav-c .nav {
+        width: 150px;
+        margin: auto;
+        padding: 10px 20px; box-sizing: border-box;
+        background: inherit;
+        border-right: 1px solid #1e1e1e;
+        color: white;
+        text-align: center;
+    }
+    header .nav-c .nav:hover {
+        background: #001d2c;
+    }
+}
+
+/* Header -> Mobile */
+@media only screen and (max-width: 700px) {
+    /* Button to show/hide nav bar */
+    header button {
+        width: 45px; height: 45px;
+        margin: auto 10% auto auto;
+        padding: 0;
+        display: flex;
+        right: 0; position: relative;
+
+        background: #001d2c;
+        border: transparent;
+        border-radius: 20%;
+        box-shadow: 0 0 5px #107dc1 inset;
+
+        font-size: 130%;
+        color: white;
+        text-shadow: 1px 1px black,
+                        0 0 5px black;
+        text-align: center;
+    }
+    header button .fa {
+        /*text-align: center;*/
+        margin: auto;
+    }
+
+    /* Container for nav links */
+    header .nav-c {
+        display: none;
+        width: 200px; max-width: 95%;
+        height: auto;
+        background: inherit;
+        margin: auto 5px auto auto;
+
+        top: 75px;
+        right: 0; position: absolute;
+        text-align: center;
+        /*box-shadow: -2px -1px 3px #001d2c, -2px 3px 3px #001d2c;*/
+        box-shadow: -2px 2px 4px #107dc1, 0 0 3px #107dc1;
+        z-index: 999;
+
+    }
+    header .nav-c.active { display: block;}
+    header .nav-c .nav {
+        width: 100%; height: auto;
+        display: block;
+        padding: 20px 5px; box-sizing: border-box;
+        background: inherit;
+        font: inherit;
+        color: white;
+        text-shadow: 1px 1px black;
+        border-bottom: 2px solid #1e1e1e;
+        position: relative;
+    }
+    /*header .nav-c .nav:last-of-type { border: none;}*/
+
+    header .nav-c .nav .fa { font-size: 120%; }
+}
+
+
+
+
+
+/*
+*
+*    Footer
+*---------------------------------*
+*---------------------------------*/
+
+footer {
+    width: 3000px; max-width: 100%;
+    height: auto;
+    padding: 10px; box-sizing: border-box;
+    font-family: 'robot', sans-serif;
+    font-size: 16px; color: white;
+    text-shadow: 1px 1px black,
+        0 0 5px black;
+    text-align: left;
+    background: #1e1e1e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Globals to override anything that was previously written */
+a, button { cursor: pointer;}
+.active { display: block; }
+.active-fl { display: flex; }
+.hide { display: none; }
+.nb {border: transparent;}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.75s;
+  animation-name: fade;
+  animation-duration: 0.75s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}

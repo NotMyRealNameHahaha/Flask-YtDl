@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{# Styles #}
+{% block style %}
+{% endblock %}
+{# Body #}
+{% block bod %}
+    <div class="fb-c main">
+        <form action="{{ url_for('dl') }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="fbi">
+                {{ form.video_url }}
+            </div>
+            <div class="fbi url-c">
+                <button class="bt dl-btn" type="submit">Get mp3</button>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+{% block script %}
+{% endblock %}
