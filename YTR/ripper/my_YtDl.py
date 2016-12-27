@@ -69,7 +69,9 @@ class Dl(object):
         }
         with YoutubeDL(my_config) as ydl:
             ydl.download([str(self.link)])
-        # file_helpers.clean_dir()
+
+        # Clean up main directory
+        file_helpers.clean_dir(self.name)
 
     # Convert video to MP3
     def convert_song(self):

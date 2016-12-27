@@ -39,20 +39,27 @@ def find_ffmpeg():
             return False
 
 
-# Check for video/mp3 files in current dir
-def clean_dir():
+# Move files with "move_me" to music dir
+# Don't move the ffmpeg binary
+def clean_dir(move_me):
     for filename in os.listdir(get_cwd()):
-        if ".mkv" in filename[-4:]:
-            os.rename(filename, "music/" + filename)
-        elif ".mp4" in filename[-4:]:
-            os.rename(filename, "music/" + filename)
-        elif ".webm" in filename[-4:]:
-            os.rename(filename, "music/" + filename)
-            # print(filename, end='')
-        elif ".mp3" in filename[-4:]:
-            os.rename(filename, "music/" + filename)
-        else:
-            pass
+        if move_me in filename and ("ffmpeg" not in filename):
+            if ".mkv" in filename[-4:]:
+                os.rename(filename,
+                          os.path.join("music", filename))
+            elif ".mp4" in filename[-4:]:
+                os.rename(filename,
+                          os.path.join("music", filename))
+            elif ".webm" in filename[-4:]:
+                os.rename(filename,
+                          os.path.join("music", filename))
+                # print(filename, end='')
+            elif ".mp3" in filename[-4:]:
+                os.rename(filename,
+                          os.path.join("music", filename))
+            else:
+                pass
+        return False
 
 
 # Check the cwd/music folder for non-MP3 files
