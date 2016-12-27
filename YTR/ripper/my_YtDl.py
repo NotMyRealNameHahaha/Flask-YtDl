@@ -42,7 +42,6 @@ class Dl(object):
     def download(self):
         my_config = {
             'ydl_opp': {
-                # 'format': 'mp3/mp4',
                 'format': 'best/best',
                 'merge_output_format': 'best',
                 'noplaylist': True,
@@ -71,21 +70,23 @@ class Dl(object):
             % (parse.quote_plus(my_video), vid_name),
             shell=True)
 
-        # Move the song && video to music_dir
         # Get video
         mv = file_helpers.find_song(which_dir=os.getcwd(),
                                     song_name=parse.quote_plus(my_video))
+        # Music folder == cwd -> YTR -> static -> music
         # Move video
-        os.rename(mv, os.path.join("music", mv))
+        music_folder = os.path.join(os.getcwd(), "YTR", "static", "music")
+        os.rename(mv, os.path.join(music_folder, mv))
         # Remove video
-        os.remove(os.path.join("music", mv))
+        os.remove(os.path.join(music_folder, mv))
         # Get Song
         my_song = file_helpers.find_song(which_dir=os.getcwd(),
                                          song_name=self.name)
         song_name, song_ext = os.path.splitext(my_song)
         # Move song
-        os.rename(my_song, os.path.join("music", str(self.name + song_ext)))
-
+        os.rename(my_song, os.path.join(music_folder, str(self.name + song_ext)))
+        return file_helpers.find_song(os.path.join(os.getcwd(), "YTR", "static", "music"),
+                                      song_name=self.name)
 
 def my_test():
     northlane = "https://www.youtube.com/watch?v=IjMuhtDkN7o"
