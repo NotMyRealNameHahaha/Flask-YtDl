@@ -31,8 +31,7 @@ def dl():
         # Download the bitch
         get_song.download()
         # get_song.move_file()
-        # get_song.convert_song()
-        # get_song.get_songs()
+        get_song.convert_song()
         print("video url == ", get_name)
         print("Video name == ", get_url)
         return redirect(url_for('index'))

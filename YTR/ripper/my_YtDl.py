@@ -71,20 +71,46 @@ class Dl(object):
             ydl.download([str(self.link)])
 
         # Clean up main directory
-        file_helpers.clean_dir(self.name)
+        # file_helpers.clean_dir(self.name)
 
     # Convert video to MP3
     def convert_song(self):
-        # subprocess.call('ffmpeg -r 10 -i frame%03d.png -r ntsc '+str(out_movie),
-        #         shell=True)
-        return self.name
+        # Find this song, rename it w/ os.quote_plus
+        my_video = file_helpers.find_song(which_dir=os.getcwd(),
+                                          song_name=self.name)
+        # Rename video to prevent FFmpeg errors
+        os.rename(my_video, parse.quote_plus(my_video))
+
+        # Get the video name + its extension
+        song_name, song_ext = os.path.splitext(my_video)
+
+        # Convert the song w/ FFmpeg
+        run('ffmpeg -i "%s" -vn -ar 44100 -ac 2 -ab 200k -f mp3 "%s".mp3'
+            % (parse.quote_plus(my_video), song_name),
+            shell=True)
+
+        # Move the song && video to music_dir
+        # Get video
+        mv = file_helpers.find_song(which_dir=os.getcwd(),
+                                    song_name=parse.quote_plus(my_video))
+        # Move video
+        os.rename(mv, os.path.join("music", mv))
+        # Get Song
+        my_song = file_helpers.find_song(which_dir=os.getcwd(),
+                                         song_name=self.name)
+        # Move song
+        os.rename(my_song, os.path.join("music", my_song))
+        # Remove video
 
     # Get songs in the music directory
-    @staticmethod
-    def get_songs():
-        songs = file_helpers.all_files(file_helpers.music_dir())[0]
-        # print("my_ytdl -> get_songs -> songs == ", songs)
-        return file_helpers.my_converter(songs)
+    def get_songs(self):
+        for ind in os.listdir(file_helpers.music_dir()):
+            if self.name in ind:
+                self.convert_song()
+            else:
+                continue
+
+    # Send path o f
 
 
 def my_test():

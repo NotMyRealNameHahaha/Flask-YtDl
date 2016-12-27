@@ -10,15 +10,19 @@ import YTR.convert
 
 # Directory helpers
 # -----------------#
-# Current working directory
-def get_cwd():
-    return os.getcwd()
+# Find file by name
+def find_song(which_dir, song_name):
+    for my_files in os.listdir(which_dir):
+        if song_name in my_files:
+            return my_files
+    # -- Returns a relative path -- ##
 
 
 # Get the 'music' directory
 def music_dir():
-    for my_dirs in os.listdir(get_cwd()):
-        if "music" in my_dirs:
+    for my_dirs in os.listdir(os.getcwd()):
+        if "music" in my_dirs\
+                and os.path.isdir(my_dirs):
             return os.path.abspath(my_dirs)
         else:
             pass
@@ -42,7 +46,7 @@ def find_ffmpeg():
 # Move files with "move_me" to music dir
 # Don't move the ffmpeg binary
 def clean_dir(move_me):
-    for filename in os.listdir(get_cwd()):
+    for filename in os.listdir(os.getcwd()):
         if move_me in filename and ("ffmpeg" not in filename):
             if ".mkv" in filename[-4:]:
                 os.rename(filename,
@@ -59,7 +63,8 @@ def clean_dir(move_me):
                           os.path.join("music", filename))
             else:
                 pass
-        return False
+        else:
+            return False
 
 
 # Check the cwd/music folder for non-MP3 files
