@@ -51,7 +51,6 @@ class Dl(object):
                 'format': 'mp3/mp4',
                 'extractaudio': True,
                 'merge_output_format': 'mp4/webm',
-                # 'audioformat': "mp3/webm",
                 'audioformat': 'mp3',
                 'noplaylist': True,
                 'outtmpl': '%(title)s.%(ext)s',
@@ -95,12 +94,15 @@ class Dl(object):
                                     song_name=parse.quote_plus(my_video))
         # Move video
         os.rename(mv, os.path.join("music", mv))
+        # Remove video
+        os.remove(os.path.join("music", mv))
         # Get Song
         my_song = file_helpers.find_song(which_dir=os.getcwd(),
                                          song_name=self.name)
         # Move song
         os.rename(my_song, os.path.join("music", my_song))
         # Remove video
+        # os.remove(os.path.join())
 
     # Get songs in the music directory
     def get_songs(self):
