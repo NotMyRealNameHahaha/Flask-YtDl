@@ -1,15 +1,7 @@
 # Python imports
 import os
 
-# Dependencies
-# import ffmpy
-# Project imports
-# from convert import convert.converter as converter
-import YTR.convert
 
-
-# Directory helpers
-# -----------------#
 # Find file by name
 def find_song(which_dir, song_name):
     for my_files in os.listdir(which_dir):
@@ -24,6 +16,7 @@ def music_dir():
         if "music" in my_dirs\
                 and os.path.isdir(my_dirs):
             return os.path.abspath(my_dirs)
+        # -- Returns ABSOLUTE path -- ##
         else:
             pass
 
@@ -65,41 +58,3 @@ def clean_dir(move_me):
                 pass
         else:
             return False
-
-
-# Check the cwd/music folder for non-MP3 files
-# If a non-mp3 file exists, run it through converter
-def mp_check():
-    for my_files in os.listdir(music_dir()):
-        if ".mp3" not in my_files[-4:]:
-            print(".mp3 is not in -> " + my_files)
-            my_converter(my_files)
-            # print(os.listdir(music_dir()))
-
-
-# Uses converter module to connect to FFmpeg && convert to mp3
-def my_converter(infile):
-    filename, file_extension = os.path.splitext(infile)
-    better_outfile = str(filename + '.mp3')
-
-    c = YTR.convert.Converter(
-        ffmpeg_path=find_ffmpeg()
-    )
-    # Set the config for converter
-    options = {
-        'format': 'mp3',
-        'audio': {
-            'codec': 'mp3',
-            'bitrate': '22050',
-            'channels': 1
-        }
-    }
-    conv = c.convert(infile=infile,
-                     outfile=better_outfile,
-                     options=options
-                     )
-    # return (x for x in conv)
-    print("file_helpers -> converter -> conv == ", conv)
-    return (x for x in conv)
-
-
