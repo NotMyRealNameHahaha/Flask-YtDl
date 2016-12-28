@@ -1,0 +1,22 @@
+
+# Get file creation/modified times
+http://stackoverflow.com/questions/237079/how-to-get-file-creation-modification-date-times-in-python
+
+The best function to use for this is os.path.getmtime().
+Internally, this just uses os.stat(filename).st_mtime.
+
+The datetime module is the best manipulating timestamps,
+  so you can get the modification date as a datetime object like this:
+
+import os
+import datetime
+def modification_date(filename):
+    t = os.path.getmtime(filename)
+    return datetime.datetime.fromtimestamp(t)
+Usage example:
+
+>>> d = modification_date('/var/log/syslog')
+>>> print d
+2009-10-06 10:50:01
+>>> print repr(d)
+datetime.datetime(2009, 10, 6, 10, 50, 1)

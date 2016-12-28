@@ -1,5 +1,12 @@
 # Python imports
 import os
+import datetime
+
+
+# Find out when a file was last modified
+def modification_date(filename):
+    t = os.path.getmtime(filename)
+    return datetime.datetime.fromtimestamp(t)
 
 
 # Find file by name
@@ -58,3 +65,10 @@ def clean_dir(move_me):
                 pass
         else:
             return False
+
+
+# Example usage of def modification_date(filename)
+def date_tester():
+    my_song = os.listdir(os.path.join("YTR", "static", "music"))[0]
+    print(modification_date(my_song))
+# date_tester()

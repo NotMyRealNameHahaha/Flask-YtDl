@@ -1,7 +1,7 @@
 
 /*-----------*  Quick Reference  *---------*/
 
-/*--   Colors  --*/
+/*--   FastFinds_and_Colors.txt  --*/
 
 /* That matrix-esque bright green */
 .matrix {
@@ -419,7 +419,7 @@ p { font-size: 14px; font-weight: 400; }
 
 
 
-/*--   Font-Colors  ** NO SHADOWS ** --*/
+/*--   Font-FastFinds_and_Colors.txt  ** NO SHADOWS ** --*/
 /* Black */
     .t-black { color: black; }
 /* White */
@@ -436,7 +436,7 @@ p { font-size: 14px; font-weight: 400; }
     .t-bblue { color: #00a0e1; }
 
 
-/*--   Font-Colors  ** WITH SHADOWS ** --*/
+/*--   Font-FastFinds_and_Colors.txt  ** WITH SHADOWS ** --*/
 /* Black */
     .ts-black { color: black; text-shadow: 2px 1px white; }
 /* White*/
@@ -1161,7 +1161,7 @@ p, div {
 p { font-size: 14px; font-weight: 400; }
 
 
-/*-----------   Colors   ---------*/
+/*-----------   FastFinds_and_Colors.txt   ---------*/
 
 /* Matrix Green */
 .bg-green {
@@ -1457,7 +1457,7 @@ footer a .fa {
 *
 *  Project Pages
 *----------------------*/
-/* Colors from UI inspiration page:
+/* FastFinds_and_Colors.txt from UI inspiration page:
 Font == #8a8a8a
 Background == #2a2a2a
 

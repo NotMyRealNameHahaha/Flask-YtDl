@@ -13,12 +13,35 @@
 {% endblock %}
 </head>
 <body>
-    <header>
+    {#  Side Nav Menu  #}
+    <div class="dgreyblue c-left  side-nav">
+    {# Home page #}
+        <a href="{{ url_for('index') }}">
+            <div class="flex c-center">
+                <p class="t-gb">Download Music</p>
+            </div>
+        </a>
+    {# Music Directory #}
+        <a href="{{ url_for('dl') }}">
+            <div class="flex c-center">
+                <p class="t-gb">My Music</p>
+            </div>
+        </a>
+    {# About #}
+        <a href="#">
+            <div class="flex c-center">
+                <p class="t-gb">About</p>
+            </div>
+        </a>
+    </div>
+
+
+{# All the other content #}
+    <div class="erthang">
         <h1 class="t-c t-bblue">YTR</h1>
-    </header>
-    {# Insert header above here #}
-    {% block bod %}
-    {% endblock %}
+        {% block bod %}
+        {% endblock %}
+    </div>
 
     {# vv Add Scripts vv #}
     <script src="{{ url_for('static', filename='js/ookillem.js') }}" ></script>

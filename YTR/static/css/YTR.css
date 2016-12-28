@@ -3,6 +3,82 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #080808;
+    width: 100%; max-width: 100%;
+    overflow-x: scroll;
+}
+
+p { letter-spacing: 0.06em;}
+
+/* Side Navigation Menu
+==============================
+=============================*/
+.side-nav {
+    width: 250px; max-width: 30%;
+    height: 1000px;
+    display: block;
+    margin: auto;
+    float:left;
+    position: relative;
+    top: -10px;
+}
+
+.side-nav a div {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(170, 233, 246, 0.64);
+}
+.side-nav a div p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+/* Text Colors
+--------------*/
+/* Grey w/ hint of blue (lighter) */
+.t-gb { color: #91b3bc;
+    text-shadow: 1px 1px black,
+            1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* Grey w/ hint of blue (Darker) */
+.t-dgreyblue { background: #222e33;}
+
+/*
+  Main content Container
+*/
+.erthang {
+    width: 2000px; max-width: 70%;
+    height: auto;
+    background: transparent;
+    display: block;
+    float: left;
+    margin: auto;
+}
+
+/* Main Title */
+.erthang h1 {
+    margin: 40px auto auto auto;
+    font-size: 4.5em;
+}
+
+.main {
+    width: inherit; max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/* Label For URL input */
+.main form label {
+    color: white;
+    font-size: 1.5em;
+    text-align: left;
+    /*padding: 40px 10px 10px 10px;*/
+    margin: 40px auto 10px 100px;
+    display: inline-block;
+}
+
 .main input { border: none;}
 /* Main Page */
 .main input[type=text] {
@@ -10,9 +86,11 @@
     width: 500px; max-width: 100%;
     height: auto; padding: 10px;
 
+    /* Alignment && display */
+    display: block; margin: 20px auto; clear: both;
     /* Colors, fonts, borders, && backgrounds */
     font: inherit;
-    font-size: 14px;
+    font-size: 1.2em;
     color: white;
     background: transparent;
     border-bottom: 2px solid #00a0e1;
@@ -21,7 +99,8 @@
 
 .main input[type=text]:focus {
     background: #1e1e1e;
-    color: white; text-shadow: 1px 1px 1px black, -1px -1px 0 black;
+    color: white;
+    text-shadow: 1px 1px 1px black, -1px -1px 0 black;
 }
 
 .main .url-c {
@@ -29,5 +108,29 @@
 }
 
 .dl-btn {
-    background: white; color: black;
+    margin: auto;
+    display: block;
+    padding: 15px 20px;
+
+    font-size: 1.5em;
+    color: #81b3bc;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #222e33;
+    box-shadow: 2px 2px 10px black;
+}
+
+
+
+
+
+/*
+    My Music:  Where your downloads are displayed
+==================================================*/
+.music_dir {
+    width: 100%;
 }
