@@ -35,12 +35,20 @@ p { letter-spacing: 0.06em;}
 /* Text Colors
 --------------*/
 /* Grey w/ hint of blue (lighter) */
-.t-gb { color: #91b3bc;
+.t-gb {
+    color: #91b3bc;
     text-shadow: 1px 1px black,
             1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 /* Grey w/ hint of blue (Darker) */
-.t-dgreyblue { background: #222e33;}
+.t-dgreyblue {
+    color: #222e33;
+    text-shadow: 1px 1px #c1eef7,
+            1px 1px 3px rgba(145, 179, 188, 0.5);
+}
+
+
+
 
 /*
   Main content Container
@@ -131,6 +139,74 @@ p { letter-spacing: 0.06em;}
 /*
     My Music:  Where your downloads are displayed
 ==================================================*/
+form.f-output { display: inherit;  }
+
 .music_dir {
-    width: 100%;
+    width: 1300px; max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto auto auto 20px;
+    font: inherit;
+    float: none;
+
+    background: #e8e8e8;
+    color: #1e1e1e;
 }
+
+/* Container for each "row" of input */
+.music_dir .row {
+    border-bottom: 1px solid black;
+    width: 100%;
+    float:left;
+}
+
+/* Date modified container
+   && Song link container */
+.music_dir .sd-c,
+.music_dir .song-h {
+    height: auto;
+    margin: auto;
+
+    display: flex; flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-end;
+    float: left;
+    padding: 20px 20px 10px 20px;
+
+    font: inherit;
+    background: transparent;
+}
+
+
+/* Music dir headers */
+.music_dir .song-h {
+    font-size: 110%;
+}
+/* Date Modified text
+   && Song link text */
+.music_dir .sd-c p, .music_dir .sd-c a {
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+    text-align: left;
+    padding: 0;
+
+    font-size: 110%;
+    width: 90%;
+    letter-spacing: 0.06em;
+    margin: auto auto 0 0;
+    float: left;
+
+}
+
+/* Style the checkbox areas */
+.sd-c label {width: 0; height: 0; visibility: hidden;}
+.sd-c input[type=checkbox] {
+
+}
+
+
+
+
+
+

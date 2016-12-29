@@ -10,12 +10,50 @@
     <div class="main">
 
 {#  -----  File Output ---------- #}
-        <div class="music_dir">
-            <p></p>
-            <a href="{{ song_url }}" download>
-                {{ song_name }}
-            </a>
+<form class="f-output" action="{{ url_for('songs') }}">
+        <div class="music_dir s-near">
+        {#  --  Headers -- #}
+            <div class="row">
+                <div class="cd-eight cm-eight sd-c song-h">
+                    <p><b>Songs</b></p>
+                </div>
+                <div class="cd-two cm-two sd-c song-h">
+                    <p><b>Date modified</b></p>
+                </div>
+            </div>
+
+            {% for song in songs %}
+                <div class="row">
+                    <div class="cd-eight cm-eight sd-c">
+                        <label for="{{ song['id'] }}"></label>
+                        <input name="{{ song['id'] }}"
+                               id="{{ song['id'] }}" type="checkbox">
+    {#                    <span class="fa fa-trash"></span>#}
+                        <p>
+                            <a href="{{ song['url'] }}"
+                               class="t-dgreyblue" download>
+                                {{ song['name'] }}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="cd-two cm-two sd-c">
+                        <p class="t-dgreyblue">{{ song['date'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
+
+    <div class="btn-c">
+        <button type="reset" class="">
+            <span class="fa fa-close"></span>
+            Cancel
+        </button>
+        <button type="submit" class="">
+            <span class="fa fa-trash"></span>
+            Delete
+        </button>
+    </div>
+</form>
     </div>
 {% endblock %}
 {% block script %}

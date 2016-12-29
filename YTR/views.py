@@ -8,11 +8,24 @@ from flask_wtf.csrf import CsrfProtect
 
 import YTR.models as mod
 import YTR.ripper.my_YtDl
+from YTR.ripper import file_helpers
 from YTR import app
 
 CsrfProtect(app)
 app.secret_key = '`\xd2\x88Z\xc6\xd6p\xc2\xab=\x1f\x02\x07\x0c\xb1'
 music_folder = os.path.join(os.getcwd(), "YTR", "static", "music")
+
+
+# Get all songs in the static/music directory
+def song_dir(which_dir):
+    for ind in os.listdir(which_dir):
+        # song_mod = file_helpers.mod_date(ind)
+        song_dict = {'id': parse.quote(ind),
+                     'url': parse.quote(ind),
+                     'name': ind,
+                     # 'date': song_mod
+                     }
+        yield song_dict
 
 
 @app.route('/', methods=('GET', 'POST'))
@@ -28,23 +41,19 @@ def index():
         # Download the song
         get_song.download()
         get_song.convert_song()
-        return redirect(url_for('dl'))
+        return redirect(url_for('songs'))
     return render_template('base_main.html', form=form)
 
 
-@app.route('/song')
-def dl():
+@app.route('/songs')
+def songs():
     # Register the WTForm
     form = mod.UrlIn()
+    # music_dir = url_for('static', filename='music')
     music_dir = os.path.join(os.getcwd(), "YTR", "static", "music")
-    print(os.listdir(music_dir)[0],
-          str("URL encoded == " + parse.quote(os.listdir(music_dir)[0])))
-    song_url = os.path.join(url_for('static', filename="music"),
-                            parse.quote(os.listdir(music_dir)[0]))
-    song_name = os.listdir(music_dir)[0]
+    song_list = song_dir(music_dir)
     return render_template('base_download.html',
-                           song_name=song_name,
-                           song_url=song_url,
+                           songs=song_list,
                            form=form)
     # return render_template('base_download.html', songs=music_folder)
 

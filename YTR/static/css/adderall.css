@@ -336,22 +336,37 @@ p { font-size: 14px; font-weight: 400; }
 
 
 /* Percentage based Sizing:  #perbase */
+/* Percentage based sizing -> Desktop */
 @media only screen and (min-width: 700px) {
-
-  /* Percentage based sizing -> Desktop */
     .cd-full { width: 3000px; max-width: 100%; }
     .cd-ninefive { width: 3000px; max-width: 95%;}
-    .cd-half { width: 1500px; max-width: 50%; }
+    .cd-eight {width: 3000px; max-width: 80%;}
+    .cd-seven { width: 3000px; max-width: 70%;}
+    .cd-six { width: 3000px; max-width: 60%; }
+    .cd-half { width: 3000px; max-width: 50%; }
+    .cd-four { width: 3000px; max-width: 40%; }
+    .cd-three { width: 3000px; max-width: 30%; }
+    .cd-two { width: 3000px; max-width: 20%; }
+
+    /* Basic ratios */
     .cd-third { width: 3000px; max-width: 33%; }
-    .cd-fourth { width: 3000px; max-width: 25%; }
-    .cd-fifth { width: 3000px; max-width: 20%; }
+    .cd-qtr { width: 3000px; max-width: 25%; }
+    .cd-fif { width: 3000px; max-width: 20%; }
 }
 
+/* Percentage based sizing -> Mobile */
 @media only screen and (max-width: 700px) {
-
-  /* Percentage based sizing -> Mobile */
     .cm-full { width: 3000px; max-width: 100%; }
     .cm-ninefive { width: 3000px; max-width: 95%;}
+    .cm-eight {width: 3000px; max-width: 80%;}
+    .cm-seven { width: 3000px; max-width: 70%;}
+    .cm-six { width: 3000px; max-width: 60%; }
+    .cm-half { width: 3000px; max-width: 50%; }
+    .cm-four { width: 3000px; max-width: 40%; }
+    .cm-three { width: 3000px; max-width: 30%; }
+    .cm-two { width: 3000px; max-width: 20%; }
+
+    /* Basic ratios */
     .cm-half { width: 1500px; max-width: 50%; }
     .cm-third { width: 3000px; max-width: 33%; }
     .cm-fourth { width: 3000px; max-width: 25%; }
