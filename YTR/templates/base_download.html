@@ -10,15 +10,12 @@
     <div class="main">
 
 {#  -----  File Output ---------- #}
-<form class="f-output" action="{{ url_for('songs') }}">
+<form class="f-output" action="{{ url_for('songs') }}" method="POST">
         <div class="music_dir s-near">
         {#  --  Headers -- #}
             <div class="row">
                 <div class="cd-eight cm-eight sd-c song-h">
                     <p><b>Songs</b></p>
-                </div>
-                <div class="cd-two cm-two sd-c song-h">
-                    <p><b>Date modified</b></p>
                 </div>
             </div>
 
@@ -35,23 +32,24 @@
                                 {{ song['name'] }}
                             </a>
                         </p>
-                    </div>
-                    <div class="cd-two cm-two sd-c">
-                        <p class="t-dgreyblue">{{ song['date'] }}</p>
+                        {# Download link/icon #}
+                        <a href="{{ song['url'] }}" download>
+                            <span class="fa fa-download"></span>
+                        </a>
                     </div>
                 </div>
             {% endfor %}
+    {# Cancel/Delete buttons #}
+        <div class="btn-c">
+            <button type="reset" class="bt s-near">
+                <span class="fa fa-close"></span>
+                <span>Cancel</span>
+            </button>
+            <button type="submit" class="bt s-near del-btn">
+                <span class="fa fa-trash"></span>
+                <span>Delete</span>
+            </button>
         </div>
-
-    <div class="btn-c">
-        <button type="reset" class="">
-            <span class="fa fa-close"></span>
-            Cancel
-        </button>
-        <button type="submit" class="">
-            <span class="fa fa-trash"></span>
-            Delete
-        </button>
     </div>
 </form>
     </div>

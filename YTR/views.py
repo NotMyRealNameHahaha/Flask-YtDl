@@ -2,13 +2,14 @@
 import json
 import os
 from urllib import parse
+import datetime
 # Flask Imports
 from flask import render_template, redirect, url_for, request
 from flask_wtf.csrf import CsrfProtect
 
 import YTR.models as mod
 import YTR.ripper.my_YtDl
-from YTR.ripper import file_helpers
+# from YTR.ripper import file_helpers
 from YTR import app
 
 CsrfProtect(app)
@@ -19,11 +20,10 @@ music_folder = os.path.join(os.getcwd(), "YTR", "static", "music")
 # Get all songs in the static/music directory
 def song_dir(which_dir):
     for ind in os.listdir(which_dir):
-        # song_mod = file_helpers.mod_date(ind)
         song_dict = {'id': parse.quote(ind),
-                     'url': parse.quote(ind),
+                     # 'url': parse.quote(ind),
+                     'url': parse.quote(str("static/music/" + ind)),
                      'name': ind,
-                     # 'date': song_mod
                      }
         yield song_dict
 
@@ -45,20 +45,18 @@ def index():
     return render_template('base_main.html', form=form)
 
 
-@app.route('/songs')
+@app.route('/songs', methods=['GET', 'POST'])
 def songs():
-    # Register the WTForm
-    form = mod.UrlIn()
-    # music_dir = url_for('static', filename='music')
-    music_dir = os.path.join(os.getcwd(), "YTR", "static", "music")
+    root_dir = os.path.basename(app.root_path)
+    music_dir = os.path.join(root_dir, "static", "music")
     song_list = song_dir(music_dir)
+    print(music_dir)
     return render_template('base_download.html',
-                           songs=song_list,
-                           form=form)
+                           songs=song_list)
     # return render_template('base_download.html', songs=music_folder)
 
 """
 Notes:
-
+    Delete functionality:
 
 """

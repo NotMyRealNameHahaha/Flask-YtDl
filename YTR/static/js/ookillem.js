@@ -32,9 +32,9 @@ as the name is changed.
     }
 
     // nav menu -> Mobile toggle
-    document.getElementById("headerbtn").addEventListener("click", function() {
-        kTog("headerdd", "active");
-    });
+    // document.getElementById("headerbtn").addEventListener("click", function() {
+    //     kTog("headerdd", "active");
+    // });
 
     // Toggle function w/ event target
     function evtkTog(evt, evtKlass, which, what) {

@@ -9,7 +9,7 @@ body {
     overflow-x: scroll;
 }
 
-p { letter-spacing: 0.06em;}
+p, a, span { letter-spacing: 0.06em;}
 
 /* Side Navigation Menu
 ==============================
@@ -43,7 +43,7 @@ p { letter-spacing: 0.06em;}
 /* Grey w/ hint of blue (Darker) */
 .t-dgreyblue {
     color: #222e33;
-    text-shadow: 1px 1px #c1eef7,
+    text-shadow: 1px 1px #c7f6ff,
             1px 1px 3px rgba(145, 179, 188, 0.5);
 }
 
@@ -184,29 +184,64 @@ form.f-output { display: inherit;  }
 }
 /* Date Modified text
    && Song link text */
-.music_dir .sd-c p, .music_dir .sd-c a {
+.music_dir .sd-c p, .music_dir .sd-c p a {
     font: inherit;
     text-decoration: none;
     color: inherit;
     text-align: left;
     padding: 0;
 
-    font-size: 110%;
+    font-size: 14px;
     width: 90%;
     letter-spacing: 0.06em;
-    margin: auto auto 0 0;
+    margin: auto auto 0 10px;
     float: left;
 
 }
 
-/* Style the checkbox areas */
-.sd-c label {width: 0; height: 0; visibility: hidden;}
-.sd-c input[type=checkbox] {
-
+/* Style the checkbox Labels (make them disappear */
+.main form .sd-c label { display: none;}
+/* Style the download icon/link */
+.main form .sd-c a .fa {
+    color: black;
+    margin: auto 10% auto auto;
 }
 
+/* Music_dir -> Cancel/delete Button container */
+.main form .btn-c {
+    width: inherit; max-width: 100%;
+    height: auto;
 
+    padding: 10px;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
+    /* Styles */
+    background: #222e33;
+}
 
+/* Music_dir -> cancel/delete button container */
+.main form .btn-c button.bt {
+    height: auto;
+    font-size: 1.0em;
+    justify-content: space-around;
+    align-content: center;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 8px;
+}
+.main form .btn-c button.bt span {
+    margin: auto;
+    padding: 0 3px;
+    color: inherit; text-shadow: inherit;
+}
+
+.main form .btn-c button.del-btn {
+    background: #cc171b;
+    color: white;
+    text-shadow: 1px 1px 2px black, 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
 
 
