@@ -23,9 +23,10 @@
                 <div class="row">
                     <div class="cd-eight cm-eight sd-c">
                         <label for="{{ song['id'] }}"></label>
-                        <input name="{{ song['id'] }}"
-                               id="{{ song['id'] }}" type="checkbox">
-    {#                    <span class="fa fa-trash"></span>#}
+                        {{ song_form.csrf_token }}
+{#                        {{ song['bool_input'] }}#}
+{#                        {{ song_form.name(name='song["id"]') }}#}
+                        <input name="{{ song['id'] }}" id="{{ song['id'] }}" type="checkbox">
                         <p>
                             <a href="{{ song['url'] }}"
                                class="t-dgreyblue" download>

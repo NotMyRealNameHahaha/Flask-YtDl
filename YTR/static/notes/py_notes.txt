@@ -20,3 +20,27 @@ Usage example:
 2009-10-06 10:50:01
 >>> print repr(d)
 datetime.datetime(2009, 10, 6, 10, 50, 1)
+
+
+
+
+
+
+
+# Getting form data
+import json
+def my_formdata():
+    if request.method == 'POST':
+        # song_names = (x['id'] for x in song_list)
+        print(json.dumps(request.form, indent=2, sort_keys=True))
+
+
+>>> my_formdata()
+{
+127.0.0.1 - - [31/Dec/2016 03:05:46] "POST /songs HTTP/1.1" 302 -
+  "THY%20ART%20IS%20MURDER%20-%20Reign%20Of%20Darkness%20%28OFFICIAL%20VIDEO%29.mp3": "on",
+  "csrf_token": "1483175140##c2ade82a8012323dbb8ca760daea0d8e5d86fdf1"
+}
+
+
+
