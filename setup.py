@@ -31,6 +31,7 @@ def open_browser():
     else:
         subprocess.run("xdg-open 127.0.0.1:5000", shell=True)
 
+
 def mytest():
     py_location = subprocess.Popen("which python3.5", shell=True)
     print(py_location.stdout.read())
