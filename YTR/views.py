@@ -3,15 +3,16 @@ import json
 import os
 from urllib import parse
 import datetime
+
 # Flask Imports
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 from flask_wtf.csrf import CsrfProtect
 from flask_wtf import FlaskForm
 from wtforms import BooleanField
 
 # Project imports
 import YTR.models as mod
-import YTR.ripper.my_YtDl
+import YTR.ripper.downloader
 # from YTR.ripper import file_helpers
 from YTR import app
 
@@ -31,20 +32,33 @@ def song_dir(which_dir):
         yield song_dict
 
 
-@app.route('/', methods=('GET', 'POST'))
+# Iterate form values
+def form_iter(url_list):
+    for ind in url_list.values():
+        if len(ind) > 5 and "youtube" in ind:
+            get_url, get_name = YTR.ripper.downloader.get_name(ind)
+            # Set up the Download class
+            get_song = YTR.ripper.downloader.Dl(link=get_url,
+                                                name=get_name)
+            # Download the song
+            get_song.download()
+            # Convert it
+            get_song.convert_song()
+            # finally:
+            #     return {'error_msg': str('There was an error with ', ind), 'URL': ind}
+
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     # Register the WTForm
     form = mod.UrlIn()
     if request.method == 'POST':
-        user_url = form.video_url.data
-        get_url, get_name = YTR.ripper.my_YtDl.get_name(user_url)
-        # Set up the download class
-        get_song = YTR.ripper.my_YtDl.Dl(link=get_url,
-                                         name=get_name)
-        # Download the song
-        get_song.download()
-        get_song.convert_song()
+        user_url = form.data
+        # Send the form data to form_iter for processing :)
+        form_iter(user_url)
         return redirect(url_for('songs'))
+
+    # Method == GET
     return render_template('base_main.html', form=form)
 
 
@@ -69,6 +83,20 @@ def songs():
                            song_form=mod.UrlIn())
 
     # return render_template('base_download.html', songs=music_folder)
+
+
+@app.route('/checker', methods=['POST'])
+def checker():
+    # Parse the incoming JSON
+    form_id = request.get_json()['input_id']
+    form_url = request.get_json()['input_value']
+
+    # Send form_url to YTR.get_name
+    vid_url, vid_name = YTR.ripper.downloader.get_name(form_url)
+    return_dict = {'input_id': form_id, 'video_name': vid_name}
+    # return jsonify(return_dict)
+    print(jsonify(**return_dict))
+    return json.dumps(return_dict)
 
 """
 Notes:

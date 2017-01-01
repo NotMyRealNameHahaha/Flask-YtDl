@@ -8,9 +8,34 @@
     <div class="main">
         <form action="{{ url_for('index') }}" method="POST">
             {{ form.csrf_token }}
-                <label>Enter Video URL:</label>
-                {{ form.video_url }}
-                <button class="bt dl-btn" type="submit">Get mp3</button>
+            <label>Enter Video URL:</label>
+            <div id="main_input" class="url_cont b-no">
+                <p class="hidden"></p>
+                {{ form.first_vid }}
+            </div>
+        {# Dropdown Button #}
+            <div id="more_inputs" class="show_all"><span>+</span></div>
+        {# Dropdown container #}
+            <div id="hider" class="hidden">
+                <div class="url_cont">
+                    <p class="hidden"></p>
+                    {{ form.second_vid }}
+                </div>
+                <div class="url_cont">
+                    <p class="hidden"></p>
+                    {{ form.third_vid }}
+                </div>
+                <div class="url_cont">
+                    <p class="hidden"></p>
+                    {{ form.fourth_vid }}
+                </div>
+                <div class="url_cont b-no">
+                    <p class="hidden"></p>
+                    {{ form.fifth_vid }}
+                </div>
+            </div>
+
+            <button id="get_music" class="bt dl-btn" type="submit">Get mp3</button>
         </form>
     </div>
 

@@ -36,7 +36,7 @@ p, a, span { letter-spacing: 0.06em;}
 --------------*/
 /* Grey w/ hint of blue (lighter) */
 .t-gb {
-    color: #91b3bc;
+    color: #98d2dd;
     text-shadow: 1px 1px black,
             1px 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -88,14 +88,71 @@ p, a, span { letter-spacing: 0.06em;}
 }
 
 .main input { border: none;}
-/* Main Page */
+
+/* Download Music Page -> Button to show more input fields */
+.main form .show_all {
+    width: 45px; height: 45px;
+    position: relative;
+    margin: auto auto auto 20%;
+
+    display: flex; justify-content: center; align-content: center;
+    background: #00a0e1;
+    color: white; font-size: 30px; text-shadow: 1px 1px black;
+
+    border-radius: 50%;
+    padding: 5px; text-align: center;
+}
+
+.main form .url_cont {
+    width: 510px; max-width: 100%;
+    height: auto;
+    margin: auto;
+    border-bottom: 1px solid #757575;
+    padding: 10px 0;
+}
+
+/* Label for the video name (get this from JSON response onblur )*/
+.main form .url_cont p {
+    width: 90%; max-width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 5px 0;
+
+    position: relative;
+    top: 20px;
+    bottom: 0;
+    left: 10px;
+    text-align: center;
+
+    color: white;
+    font-size: 1.0em;
+    line-height: 110%;
+    background: #1e1e1e;
+    text-shadow: 1px 1px 1px black;
+}
+
+.main form .url_cont p:after {
+    margin: auto;
+
+    position: absolute;
+    top: 97%; left: 49%;
+    z-index: 1000;
+    content: '';
+
+    /*border-bottom: 10px solid #757575;*/
+    border-top: 10px solid #1e1e1e;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+
 .main input[type=text] {
     /* Sizing */
     width: 500px; max-width: 100%;
     height: auto; padding: 10px;
 
     /* Alignment && display */
-    display: block; margin: 20px auto; clear: both;
+    display: block; margin: 35px auto; clear: both;
     /* Colors, fonts, borders, && backgrounds */
     font: inherit;
     font-size: 1.2em;
@@ -109,7 +166,10 @@ p, a, span { letter-spacing: 0.06em;}
     background: #1e1e1e;
     color: white;
     text-shadow: 1px 1px 1px black, -1px -1px 0 black;
+    border-bottom: 2px solid #00b5ff;
+    border-left: 2px solid rgb(0, 160, 225);
 }
+
 
 .main .url-c {
     padding: 30px 10px;
@@ -121,7 +181,7 @@ p, a, span { letter-spacing: 0.06em;}
     padding: 15px 20px;
 
     font-size: 1.5em;
-    color: #81b3bc;
+    color: #98d2dd;
     text-shadow: 1px 1px 2px black;
     font-weight: bold;
     letter-spacing: 0.01em;
@@ -245,3 +305,8 @@ form.f-output { display: inherit;  }
 }
 
 
+.b-no { border: none !important;}
+
+.hidden { display: none;  }
+
+.active { display: block; }

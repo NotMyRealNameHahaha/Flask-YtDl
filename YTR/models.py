@@ -10,9 +10,14 @@ from wtforms.validators import DataRequired
 
 # URL input form
 class UrlIn(FlaskForm):
-    video_url = StringField('name',
-                            validators=[DataRequired()],
-                            default="https://www.youtube.com/watch?v=44pTQe4Q9lg")
+    first_vid = StringField('name', default="https://www.youtube.com/watch?v=44pTQe4Q9lg")
+    second_vid = StringField('name')
+
+    third_vid = StringField('name')
+
+    fourth_vid = StringField('name')
+
+    fifth_vid = StringField('name')
 
 # Modify JSON that stores FULL path of download dir here
 
