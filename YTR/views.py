@@ -98,6 +98,16 @@ def checker():
     print(jsonify(**return_dict))
     return json.dumps(return_dict)
 
+
+# Shutdown werkzeug server if it's interfering with other shit
+@app.route('/shutdown')
+def shutdown():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        pass
+    func()
+    return None
+
 """
 Notes:
     Delete functionality:
