@@ -12,6 +12,7 @@ static/non-minified
 .idea/
 .DS_Store
 */.DS_Store
+mypy/venv/venv
 
 # C extensions
 *.so

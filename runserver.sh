@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-python3.5 setup.py
+#export VIRTUALENV_PYTHON=mypy/python3.5
+sudo pip install virtualenv
+virtualenv mypy/venv/venv --python=python3.5
 
-activate() {
-    source venv/bin/activate
-#    pip install -r requirements.txt
-    export FLASK_APP=runserver.py
-    flask run
-}
-activate
+
+source mypy/venv/venv/bin/activate
+mypy/venv/venv/bin/pip install -r requirements.txt
+mypy/venv/venv/bin/python3.5 runserver.py

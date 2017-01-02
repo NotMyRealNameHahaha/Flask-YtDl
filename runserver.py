@@ -1,4 +1,4 @@
-#!/venv/bin python3.5
+#! /mypy/venv/venv/bin/python
 from YTR import app
 # Python imports
 import subprocess
@@ -11,13 +11,12 @@ def open_browser():
     config = open("config.JSON", "r+")
     my_config = json.load(config)
     if my_config['OS'] == 'Linux':
-        subprocess.run("sensible-browser 127.0.0.1:5000", shell=True)
+        subprocess.run("sensible-browser 127.0.0.1:5100", shell=True)
     elif my_config['OS'] == 'OSX':
-        subprocess.run("open 127.0.0.1:5000", shell=True)
+        subprocess.run("open 127.0.0.1:5100", shell=True)
     # else:
     #     subprocess.run("xdg-open 127.0.0.1:5000", shell=True)
 
-
+open_browser()
 if __name__ == '__main__':
-    open_browser()
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5100)

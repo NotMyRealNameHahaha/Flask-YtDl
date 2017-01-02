@@ -2,13 +2,10 @@
 import json
 import os
 from urllib import parse
-import datetime
 
 # Flask Imports
 from flask import render_template, redirect, url_for, request, jsonify
-from flask_wtf.csrf import CsrfProtect
-from flask_wtf import FlaskForm
-from wtforms import BooleanField
+import click
 
 # Project imports
 import YTR.models as mod
@@ -101,12 +98,21 @@ def checker():
 
 # Shutdown werkzeug server if it's interfering with other shit
 @app.route('/shutdown')
-def shutdown():
+def byeserver():
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         pass
     func()
-    return None
+
+
+@app.cli.command()
+def shutdown():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        pass
+    else:
+        click.echo("Shut down the server, I gotchu")
+    func()
 
 """
 Notes:
