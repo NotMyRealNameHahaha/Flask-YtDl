@@ -11,7 +11,7 @@ The OSX version and Linux version only differ in two ways:
 
 
 ### Requirements
-Flask-YtDl is written in ** Python 3.5.2 ** & has not been tested in other versions.  If you would like to rewrite it to improve compatability, please do.
+Flask-YtDl is written in **Python 3.5.2** & has not been tested in other versions.  If you would like to rewrite it to improve compatability, please do.
 Dependencies can be found in requirements.txt.
 
 ### Installation
@@ -33,7 +33,10 @@ python runserver.py
 
 
 # Features
-Flask-YtDl basically downloads videos off of Youtube, then runs those videos through FFmpeg (which is included) to extract the highest quality MP3 file from each video.  Immediately after conversion, the videos file are deleted.  To be 100% clear, this means that Flask-YtDl does **not** keep videos, it only rips mp3s from Youtube videos.
+Flask-YtDl basically downloads videos off of Youtube, then runs those videos through FFmpeg (which is included) to extract the highest quality MP3 file from each video.  Immediately after conversion, the videos file are deleted.  
+
+To be 100% clear, this means that Flask-YtDl does **not** keep videos, it only rips mp3s from Youtube videos.
+
 While this process is a bit inefficient, it mitigates any inconsistencies that can occur with just using youtube-dl.  As such, you should not use anything like this in a production setting.  But it's perfect for a local app.
 
 - Supports multiple uploads.  Just click the "+" button on the home page.
@@ -78,8 +81,11 @@ If you create something awesome with this, fork it, pull it, whatever you want t
 
 # Credit Where Credit is Due
 [Flask- A Python Microframework](http://flask.pocoo.org/)
-[youtube-dl](https://github.com/rg3/youtube-dl),
+<br>
+[youtube-dl](https://github.com/rg3/youtube-dl)
+<br>
 [FFmpeg](https://www.ffmpeg.org/)
+<br>
 [FFmpeg static binaries](https://github.com/eugeneware/ffmpeg-static) by @eugeneware
 
 
