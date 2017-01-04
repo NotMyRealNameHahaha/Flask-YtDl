@@ -38,11 +38,9 @@ def form_iter(url_list):
             get_song = YTR.ripper.downloader.Dl(link=get_url,
                                                 name=get_name)
             # Download the song
-            get_song.download()
+            get_song.song_dl()
             # Convert it
             get_song.convert_song()
-            # finally:
-            #     return {'error_msg': str('There was an error with ', ind), 'URL': ind}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -51,7 +49,7 @@ def index():
     form = mod.UrlIn()
     if request.method == 'POST':
         user_url = form.data
-        # Send the form data to form_iter for processing :)
+        # Send the form data to form_iter for processing
         form_iter(user_url)
         return redirect(url_for('songs'))
 
@@ -64,7 +62,6 @@ def songs():
     root_dir = os.path.basename(app.root_path)
     music_dir = os.path.join(root_dir, "static", "music")
     # music_dir = "YTR/static/music"
-    # print("this dir == ", music_dir)
 
     # Which directory are we in?
     this_dir = mod.DeleteVideo(music_dir)
@@ -73,13 +70,10 @@ def songs():
     if request.method == 'POST':
         # song_names = (x['id'] for x in song_list)
         this_dir.byevideo(request.form)
-        # print(json.dumps(request.form, indent=2, sort_keys=True))
-        return redirect(url_for('index'))
+        return redirect(url_for('songs'))
     return render_template('base_download.html',
                            songs=song_list,
                            song_form=mod.UrlIn())
-
-    # return render_template('base_download.html', songs=music_folder)
 
 
 @app.route('/checker', methods=['POST'])
@@ -91,12 +85,10 @@ def checker():
     # Send form_url to YTR.get_name
     vid_url, vid_name = YTR.ripper.downloader.get_name(form_url)
     return_dict = {'input_id': form_id, 'video_name': vid_name}
-    # return jsonify(return_dict)
-    print(jsonify(**return_dict))
     return json.dumps(return_dict)
 
 
-# Shutdown werkzeug server if it's interfering with other shit
+# Shutdown werkzeug server
 @app.route('/shutdown')
 def byeserver():
     func = request.environ.get('werkzeug.server.shutdown')
@@ -105,6 +97,7 @@ def byeserver():
     func()
 
 
+# shutdown.sh uses this to shut down server
 @app.cli.command()
 def shutdown():
     func = request.environ.get('werkzeug.server.shutdown')

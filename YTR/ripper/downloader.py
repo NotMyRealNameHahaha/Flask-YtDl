@@ -8,7 +8,7 @@ from youtube_dl import YoutubeDL
 from YTR.ripper import file_helpers
 
 
-class MyLogger(object):
+class YTRLogger(object):
     def debug(self, msg):
         print('\nDegug -> ', msg, '  From: ', self)
 
@@ -17,11 +17,6 @@ class MyLogger(object):
 
     def error(self, msg):
         print('Error:', msg, '  From: ', self)
-
-
-def my_hook(d):
-    if d['status'] == 'finished':
-        return str(d), ' is done downloading, now converting'
 
 
 # Get the name of the video (song)
@@ -39,24 +34,33 @@ class Dl(object):
         self.link = link
         self.name = name
 
-    def download(self):
-        my_config = {
-            'ydl_opp': {
-                'format': 'best/best',
-                'merge_output_format': 'best',
-                'noplaylist': True,
-                'outtmpl': '%(title)s.%(ext)s',
-                'restrictfilenames': True,
-                'logger': MyLogger(),
-                # 'progress_hooks': [my_hook],
-            }
-        }
-        with YoutubeDL(my_config) as ydl:
+    def song_dl(self):
+        """
+            If you would like to change download options, pass options to YoutubeDL
+            Example from youtube-dl Docs:
+                ydl_opts = {
+                    'format': 'bestaudio/best',
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': 'mp3',
+                        'preferredquality': '192',
+                    }],
+                    'logger': MyLogger(),
+                    'progress_hooks': [my_hook],
+                }
+                with YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([str(self.link)])
+
+            All options can be found at:  https://github.com/rg3/youtube-dl/blob/master/youtube_dl/options.py
+        """
+        # To change download options, pass a dict to YoutubeDL()
+        #  Example:
+        with YoutubeDL() as ydl:
             ydl.download([str(self.link)])
 
     # Convert video to MP3
     def convert_song(self):
-        # Find this song, rename it w/ os.quote_plus
+        # Find this video, rename it w/ os.quote_plus
         my_video = file_helpers.find_song(which_dir=os.getcwd(),
                                           song_name=self.name)
         # Rename video to prevent FFmpeg errors
@@ -66,7 +70,7 @@ class Dl(object):
         vid_name, vid_ext = os.path.splitext(my_video)
 
         # Convert the song w/ FFmpeg
-        run('ffmpeg -i "%s" -vn -ar 44100 -ac 2 -ab 200k -f mp3 "%s".mp3'
+        run('ffmpeg -i "%s" -vn -ar 44100 -ac 2 -ab 200k -f mp3 "%s".mp3 | ffmpeg'
             % (parse.quote_plus(my_video), vid_name),
             shell=True)
 

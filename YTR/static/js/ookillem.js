@@ -5,12 +5,6 @@
     }
 
 
-    // Toggle function w/ event target
-    function evtkTog(evt, evtKlass, which, what) {
-        document.getElementById(which).classList.toggle(what);
-        evt.currentTarget.classList.add(evtKlass);
-    }
-
     // Reveal the hidden input fields
     document.getElementById("more_inputs").onclick = function(){
         // Remove class "hidden"

@@ -56,21 +56,10 @@ class DeleteVideo(object):
                         delete_video = os.path.join(rihanna, ind)
                         # print(delete_video)
                         os.remove(delete_video)
-                        print("\nYTR deleted this video:", delete_video)
+                        # print("\nYTR deleted this video:", delete_video)
                     except RuntimeError as e:
-                        print("\nWell, I didn't remove this video:", os.path.join(os.getcwd(), "static", "music", ind),
-                              "\n Anddddd here's the error:", e)
+                        print("\nWell, I didn't remove this video:", ind,
+                              "\n And it threw this error:", e)
                 else:
                     pass
 
-
-# Test function
-def my_test():
-    music_dir = "YTR/static/music"
-    my_formdata = {
-                    "THY%20ART%20IS%20MURDER%20-%20Reign%20Of%20Darkness%20%28OFFICIAL%20VIDEO%29.mp3": "on",
-                    "csrf_token": "1483175140##c2ade82a8012323dbb8ca760daea0d8e5d86fdf1"
-                   }
-    which_video = DeleteVideo(music_dir)
-    which_video.byevideo(my_formdata)
-# my_test()
