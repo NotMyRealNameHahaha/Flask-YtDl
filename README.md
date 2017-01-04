@@ -1,4 +1,4 @@
-# Flask-TtDl
+# Flask-YtDl
 A convenient marriage of Flask and Youtube-dl.
 Flask-YtDl is NOT a Flask Extension.  It is simply a Web interface to [youtube-dl](https://github.com/rg3/youtube-dl), and it uses [Flask](http://flask.pocoo.org/) to make this happen.
 Additionally, it serves as a simple example of how to use the common features of Flask.
@@ -47,7 +47,7 @@ While this process is a bit inefficient, it mitigates any inconsistencies that c
   - Delete files from this directory to save harddrive space
   - These mp3 files can be found in YTR/static/music
 - Asynchronously verifies URLS
-  - Try it: On the home page, enter a url.  Do not submit the form, just click anywhere else on the page.  Shortly thereafter a message will pop up with either **1.** The name of the video **or** 2. A message asking to double check the URL
+  - Try it: On the home page, enter a url.  Do not submit the form, just click anywhere else on the page.  Shortly thereafter a message will pop up with either 1. The name of the video **or** 2. A message asking to double check the URL
 
 # Extra Features
 When you start Flask-YtDl, it runs on http://127.0.0.1:5100.  Flask apps, by default, run on port 5000 (vs. 5100).  This feature allows you to keep Flask-YtDl out of the way.  If it gets in your way, or you just want to turn it off, you have two options:
