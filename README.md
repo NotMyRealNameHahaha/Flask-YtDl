@@ -16,15 +16,15 @@ Dependencies can be found in requirements.txt.
 
 ### Installation
 Clone the git repo
-'''shell
+```shell
 git clone https://github.com/NotMyRealNameHahaha/Flask-YtDl.git
-'''
+```
 Create your virtualenv, activate it, & download dependencies
-'''shell
+```shell
 virtualenv -p /usr/bin/python3.5 venv
 source venv/bin/activate
 pip install -r requirements.txt
-'''
+```
 
 ### Start it up
 python runserver.py
@@ -53,17 +53,17 @@ When you start Flask-YtDl, it runs on http://127.0.0.1:5100.  Flask apps, by def
 2. Open terminal, change to the Flask-Tube directory and (on Linux) type './shutdown.sh' and hit enter
 
 **runserver.py** includes a convenient function to open your default browser for you.  To add this functionality, simply change
-'''python
+```python
 # open_browser()
 if __name__ == '__main__':
     app.run(debug=True, port=5100)
-'''
+```
 To:
-'''python
+```python
 open_browser()
 if __name__ == '__main__':
     app.run(debug=True, port=5100)
-'''
+```
 
 
 # Customizing Flask-Tube
