@@ -1,7 +1,7 @@
 # Flask-Tube
-A convenient marriage of Flask &amp; Youtube-dl.
-Flask-Tube is NOT a Flask Extension.  It is simply a Web interface to [youtube-dl](https://github.com/rg3/youtube-dl), and it uses [Flask](http://flask.pocoo.org/) to make this happen.
-Additionally, it serves as a simple example of how to use Flask, & how to structure Flask apps so they can be extended with minimal headaches.
+A convenient marriage of Flask and Youtube-dl.
+Flask-YtDl is NOT a Flask Extension.  It is simply a Web interface to [youtube-dl](https://github.com/rg3/youtube-dl), and it uses [Flask](http://flask.pocoo.org/) to make this happen.
+Additionally, it serves as a simple example of how to use the common features of Flask.
 
 # Getting Started
 ### Versions
@@ -11,13 +11,13 @@ The OSX version and Linux version only differ in two ways:
 
 
 ### Requirements
-Flask-Tube is written in ** Python 3.5.2 ** & has not been tested in other versions.  If you would like to rewrite it to improve compatability, please do.
+Flask-YtDl is written in ** Python 3.5.2 ** & has not been tested in other versions.  If you would like to rewrite it to improve compatability, please do.
 Dependencies can be found in requirements.txt.
 
 ### Installation
 Clone the git repo
 '''shell
-git clone https://github.com/NotMyRealNameHahaha/Flask-Tube.git
+git clone https://github.com/NotMyRealNameHahaha/Flask-YtDl.git
 '''
 Create your virtualenv, activate it, & download dependencies
 '''shell
@@ -33,7 +33,7 @@ python runserver.py
 
 
 # Features
-Flask-Tube basically downloads videos off of Youtube, then runs those videos through FFmpeg (which is included) to extract the highest quality MP3 file from each video.  Immediately after conversion, the videos file are deleted.  To be 100% clear, this means that Flask-Tube does **not** keep videos, it is only for ripping mp3s from Youtube videos.
+Flask-YtDl basically downloads videos off of Youtube, then runs those videos through FFmpeg (which is included) to extract the highest quality MP3 file from each video.  Immediately after conversion, the videos file are deleted.  To be 100% clear, this means that Flask-YtDl does **not** keep videos, it only rips mp3s from Youtube videos.
 While this process is a bit inefficient, it mitigates any inconsistencies that can occur with just using youtube-dl.  As such, you should not use anything like this in a production setting.  But it's perfect for a local app.
 
 - Supports multiple uploads.  Just click the "+" button on the home page.
@@ -45,7 +45,7 @@ While this process is a bit inefficient, it mitigates any inconsistencies that c
   - Try it: On the home page, enter a url.  Do not submit the form, just click anywhere else on the page.  Shortly thereafter a message will pop up with either **1.** The name of the video **or** 2. A message asking to double check the URL
 
 # Extra Features
-When you start Flask-Tube, it runs on http://127.0.0.1:5100.  Flask apps, by default, run on port 5000 (vs. 5100).  This feature allows you to keep Flask-Tube out of the way.  If it gets in your way, or you just want to turn it off, you have two options:
+When you start Flask-YtDl, it runs on http://127.0.0.1:5100.  Flask apps, by default, run on port 5000 (vs. 5100).  This feature allows you to keep Flask-YtDl out of the way.  If it gets in your way, or you just want to turn it off, you have two options:
 1. Shut down the server by going visiting http://127.0.0.1:5000/shutdown
 2. Open terminal, change to the Flask-Tube directory and (on Linux) type './shutdown.sh' and hit enter
 
@@ -65,7 +65,8 @@ if __name__ == '__main__':
 
 # Customizing Flask-Tube
 Feel free to tear into the code, you'll find comments throughout every file.
-JS && CSS are NOT minified, so they can easily be modified, and comments are retained
+- For your convenience, most of the Python functions also have a print(something) feature commented out.  Just remove the # to see what's happening behind the scenes
+- JS && CSS are NOT minified and contain a ton of comments
 If you create something awesome with this, fork it, pull it, whatever you want to do, and I'll add a link to your awesomeness
 
 

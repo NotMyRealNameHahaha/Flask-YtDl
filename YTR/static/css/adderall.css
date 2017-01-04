@@ -12,7 +12,8 @@
    - Voila, you're at that section
 
    Example: Navigate to the "Buttons" section
-   Ctrl + F & type #ffbuttons
+       Ctrl + F
+       type: #ffbuttons
 
  */
 
@@ -30,7 +31,7 @@ Glossary for fast finds
           -> Child containers: #laychild
           -> % based sizing:  #perbase
           -> Alignment:  #layalign
-          -> Header:  #gethead
+          -> Header:  #myhead
           -> Footer:  #footcomp
 
 4. Background colors: #bgcolors
@@ -43,10 +44,10 @@ Glossary for fast finds
 7. Components -> Google style card:  #gscard
               -> Text Pill:  #redorbluepill
               -> Modals: #popmod
-              -> Slider/carousel/slideshow:  #sscfuckit
+              -> Slider/carousel/slideshow:  #scs
               -> Range input:  #instyle
 
-8. Animation: #fuckanimation
+8. Animation: #fanimate
 
 
 
@@ -726,23 +727,19 @@ div .t-pill
 
 /*
   # Animation reference
-                        #fuckanimation
+                        #fanimate
 
-.foo {
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
 */
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
 
 /*
  *
@@ -826,7 +823,7 @@ div .modal-c
  *
  *
  *
- *     Slider   Slideshow   Carousel    #sscfuckit
+ *     Slider   Carousel  Slideshow    #scs
  *----------------------------------*
  *-----------------------------------*/
 /* Example Usage:
@@ -989,7 +986,7 @@ input[type=range]:focus::-ms-fill-upper { background: #ccc; }
 
 /*
 *
-*  Header       #gethead
+*  Header       #myhead
 *---------------------------------*
 *---------------------------------*/
 
@@ -1169,12 +1166,3 @@ a, button { cursor: pointer;}
   animation-duration: 0.75s;
 }
 
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}

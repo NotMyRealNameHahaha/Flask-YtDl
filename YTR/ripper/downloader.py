@@ -97,6 +97,6 @@ def my_test():
     northlane = "https://www.youtube.com/watch?v=IjMuhtDkN7o"
     north_link, north_name = get_name(northlane)
     north_video = Dl(north_link, north_name)
-    north_video.download()
+    north_video.song_dl()
     yield str(north_video.convert_song())
 # my_test()
