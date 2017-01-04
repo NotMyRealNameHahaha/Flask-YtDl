@@ -1,4 +1,4 @@
-# Flask-Tube
+# Flask-TtDl
 A convenient marriage of Flask and Youtube-dl.
 Flask-YtDl is NOT a Flask Extension.  It is simply a Web interface to [youtube-dl](https://github.com/rg3/youtube-dl), and it uses [Flask](http://flask.pocoo.org/) to make this happen.
 Additionally, it serves as a simple example of how to use the common features of Flask.
@@ -29,6 +29,8 @@ pip install -r requirements.txt
 ### Start it up
 python runserver.py
 
+### Main Files
+The YTR folder contains most of the files that bring this application to life.  YTR = YouTube Ripper :)
 
 
 
