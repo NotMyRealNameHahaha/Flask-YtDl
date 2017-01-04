@@ -1,0 +1,62 @@
+
+# TL;DR
+from subprocess import run
+run("ffmpeg -i my_video.mkv -vn -ar 44100 -ac 2 -ab 192k -f mp3 my_song.mp3|ffmpeg", shell=True)
+
+
+
+# References
+------------
+1. Subprocesses & FFmpeg
+http://stackoverflow.com/questions/25955322/subprocess-call-ffmpeg-command-line
+
+2. Useful FFmpeg commands
+http://www.catswhocode.com/blog/19-ffmpeg-commands-for-all-needs
+
+
+
+
+
+##### Important To Remember:
+-----------------------------------------
++ FFmpeg audio bitrate default == 128k
++ ALWAYS add "shell=True" when you run subprocess.run()
+
+
+
+
+# Examples
+----------------------------------
+
+# Extract mp3 from my_video
+ffmpeg -i my_video.mkv -vn -ar 44100 -ac 2 -ab 200k -f mp3 my_song.mp3
+
+
+# ELI5
+    Source video : my_video.avi
+    Audio bitrate : 200kb/s
+    output format : mp3
+    Generated sound : sound.mp3
+
+
+
+# Example 2:  Pass variables to FFmpeg using subprocess.run()
+from subprocess import run
+run('ffmpeg -i "%s".mkv -vn -ar 44100 -ac 2 -ab 200k -f mp3 "%s".mp3'
+        %(my_video, my_video),
+        shell=True)
+
+
+
+
+
+
+
+Pipe commands to executable (aka binary)
+---------------------------------------
+#REF 1: http://stackoverflow.com/questions/13832786/how-do-i-send-commands-to-an-exe-running-through-the-command-line-with-batch
+#REF 2: http://stackoverflow.com/questions/18972156/how-to-pass-input-to-exe-in-batch-file
+
+# Example
+echo my_command | my_executable.exe
+

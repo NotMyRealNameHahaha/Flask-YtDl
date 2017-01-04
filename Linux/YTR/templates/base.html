@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YTR</title>
+{# Main CSS  #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/devicons&fa.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adderall.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/YTR.css') }}" />
+    <script src="{{ url_for('static', filename='js/prefixfree.js') }}"></script>
+{% block style %}
+{% endblock %}
+</head>
+<body>
+    {#  Side Nav Menu  #}
+    <div class="dgreyblue c-left  side-nav">
+    {# Home page #}
+        <a href="{{ url_for('index') }}">
+            <div class="flex c-center">
+                <p class="t-gb">Download Music</p>
+            </div>
+        </a>
+    {# Music Directory #}
+        <a href="{{ url_for('songs') }}">
+            <div class="flex c-center">
+                <p class="t-gb">My Music</p>
+            </div>
+        </a>
+    {# About #}
+        <a href="#">
+            <div class="flex c-center">
+                <p class="t-gb">About</p>
+            </div>
+        </a>
+    </div>
+
+
+{# All the other content #}
+    <div class="erthang">
+        <h1 class="t-c t-bblue">YTR</h1>
+        {% block bod %}
+        {% endblock %}
+    </div>
+
+    {# vv Add Scripts vv #}
+    <script src="{{ url_for('static', filename='js/ookillem.js') }}" ></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

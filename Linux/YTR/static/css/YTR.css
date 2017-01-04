@@ -1,0 +1,312 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080808;
+    width: 100%; max-width: 100%;
+    overflow-x: scroll;
+}
+
+p, a, span { letter-spacing: 0.06em;}
+
+/* Side Navigation Menu
+==============================
+=============================*/
+.side-nav {
+    width: 250px; max-width: 30%;
+    height: 1000px;
+    display: block;
+    margin: auto;
+    float:left;
+    position: relative;
+    top: -10px;
+}
+
+.side-nav a div {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(170, 233, 246, 0.64);
+}
+.side-nav a div p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+/* Text Colors
+--------------*/
+/* Grey w/ hint of blue (lighter) */
+.t-gb {
+    color: #98d2dd;
+    text-shadow: 1px 1px black,
+            1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* Grey w/ hint of blue (Darker) */
+.t-dgreyblue {
+    color: #222e33;
+    text-shadow: 1px 1px #c7f6ff,
+            1px 1px 3px rgba(145, 179, 188, 0.5);
+}
+
+
+
+
+/*
+  Main content Container
+*/
+.erthang {
+    width: 2000px; max-width: 70%;
+    height: auto;
+    background: transparent;
+    display: block;
+    float: left;
+    margin: auto;
+}
+
+/* Main Title */
+.erthang h1 {
+    margin: 40px auto auto auto;
+    font-size: 4.5em;
+}
+
+.main {
+    width: inherit; max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/* Label For URL input */
+.main form label {
+    color: white;
+    font-size: 1.5em;
+    text-align: left;
+    /*padding: 40px 10px 10px 10px;*/
+    margin: 40px auto 10px 100px;
+    display: inline-block;
+}
+
+.main input { border: none;}
+
+/* Download Music Page -> Button to show more input fields */
+.main form .show_all {
+    width: 45px; height: 45px;
+    position: relative;
+    margin: auto auto auto 20%;
+
+    display: flex; justify-content: center; align-content: center;
+    background: #00a0e1;
+    color: white; font-size: 30px; text-shadow: 1px 1px black;
+
+    border-radius: 50%;
+    padding: 5px; text-align: center;
+}
+
+.main form .url_cont {
+    width: 510px; max-width: 100%;
+    height: auto;
+    margin: auto;
+    border-bottom: 1px solid #757575;
+    padding: 10px 0;
+}
+
+/* Label for the video name (get this from JSON response onblur )*/
+.main form .url_cont p {
+    width: 90%; max-width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 5px 0;
+
+    position: relative;
+    top: 20px;
+    bottom: 0;
+    left: 10px;
+    text-align: center;
+
+    color: white;
+    font-size: 1.0em;
+    line-height: 110%;
+    background: #1e1e1e;
+    text-shadow: 1px 1px 1px black;
+}
+
+.main form .url_cont p:after {
+    margin: auto;
+
+    position: absolute;
+    top: 97%; left: 49%;
+    z-index: 1000;
+    content: '';
+
+    /*border-bottom: 10px solid #757575;*/
+    border-top: 10px solid #1e1e1e;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+
+.main input[type=text] {
+    /* Sizing */
+    width: 500px; max-width: 100%;
+    height: auto; padding: 10px;
+
+    /* Alignment && display */
+    display: block; margin: 35px auto; clear: both;
+    /* Colors, fonts, borders, && backgrounds */
+    font: inherit;
+    font-size: 1.2em;
+    color: white;
+    background: transparent;
+    border-bottom: 2px solid #00a0e1;
+    border-left: 2px solid rgba(0, 160, 225, 0.5);
+}
+
+.main input[type=text]:focus {
+    background: #1e1e1e;
+    color: white;
+    text-shadow: 1px 1px 1px black, -1px -1px 0 black;
+    border-bottom: 2px solid #00b5ff;
+    border-left: 2px solid rgb(0, 160, 225);
+}
+
+
+.main .url-c {
+    padding: 30px 10px;
+}
+
+.dl-btn {
+    margin: auto;
+    display: block;
+    padding: 15px 20px;
+
+    font-size: 1.5em;
+    color: #98d2dd;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #222e33;
+    box-shadow: 2px 2px 10px black;
+}
+
+
+
+
+
+/*
+    My Music:  Where your downloads are displayed
+==================================================*/
+form.f-output { display: inherit;  }
+
+.music_dir {
+    width: 1300px; max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto auto auto 20px;
+    font: inherit;
+    float: none;
+
+    background: #e8e8e8;
+    color: #1e1e1e;
+}
+
+/* Container for each "row" of input */
+.music_dir .row {
+    border-bottom: 1px solid black;
+    width: 100%;
+    float:left;
+}
+
+/* Date modified container
+   && Song link container */
+.music_dir .sd-c,
+.music_dir .song-h {
+    height: auto;
+    margin: auto;
+
+    display: flex; flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-end;
+    float: left;
+    padding: 20px 20px 10px 20px;
+
+    font: inherit;
+    background: transparent;
+}
+
+
+/* Music dir headers */
+.music_dir .song-h {
+    font-size: 110%;
+}
+/* Date Modified text
+   && Song link text */
+.music_dir .sd-c p, .music_dir .sd-c p a {
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+    text-align: left;
+    padding: 0;
+
+    font-size: 14px;
+    width: 90%;
+    letter-spacing: 0.06em;
+    margin: auto auto 0 10px;
+    float: left;
+
+}
+
+/* Style the checkbox Labels (make them disappear */
+.main form .sd-c label { display: none;}
+/* Style the download icon/link */
+.main form .sd-c a .fa {
+    color: black;
+    margin: auto 10% auto auto;
+}
+
+/* Music_dir -> Cancel/delete Button container */
+.main form .btn-c {
+    width: inherit; max-width: 100%;
+    height: auto;
+
+    padding: 10px;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    /* Styles */
+    background: #222e33;
+}
+
+/* Music_dir -> cancel/delete button container */
+.main form .btn-c button.bt {
+    height: auto;
+    font-size: 1.0em;
+    justify-content: space-around;
+    align-content: center;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 8px;
+}
+.main form .btn-c button.bt span {
+    margin: auto;
+    padding: 0 3px;
+    color: inherit; text-shadow: inherit;
+}
+
+.main form .btn-c button.del-btn {
+    background: #cc171b;
+    color: white;
+    text-shadow: 1px 1px 2px black, 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.b-no { border: none !important;}
+
+.hidden { display: none;  }
+
+.active { display: block; }
