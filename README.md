@@ -68,7 +68,7 @@ if __name__ == '__main__':
 ```
 
 
-# Customizing Flask-Tube
+# Customizing Flask-YtDl
 Feel free to tear into the code, you'll find comments throughout every file.
 - For your convenience, most of the Python functions also have a print(something) feature commented out.  Just remove the # to see what's happening behind the scenes
 - JS && CSS are NOT minified and contain a ton of comments
