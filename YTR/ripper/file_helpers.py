@@ -9,14 +9,6 @@ def mod_date(filename):
     return datetime.datetime.fromtimestamp(t)
 
 
-# Find file by name
-def find_song(which_dir, song_name):
-    for my_files in os.listdir(which_dir):
-        if song_name in my_files:
-            return my_files
-    # -- Returns a relative path -- ##
-
-
 # Get music directory in MAIN directory (not static folder)
 def music_dir():
     for my_dirs in os.listdir(os.getcwd()):

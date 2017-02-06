@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5.2 virtualenv at ~/Desktop/dev_projects/venvs_master/YTR_Flask/PyThreeFive" project-jdk-type="Python SDK" />
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.0rc1 virtualenv at ~/Desktop/dev_projects/Ultimate_Example/YTR_Flask/venv/YTR_venv" project-jdk-type="Python SDK" />
 </project>

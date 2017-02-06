@@ -2,10 +2,14 @@
 import os
 from urllib import parse
 # Dependencies
-# Models == User preferences && forms
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField
-from wtforms.validators import DataRequired
+
+"""
+    models.py contains:
+        - Forms
+        - Methods behind the 'delete' functionality of the "my music" page
+"""
 
 
 # URL input form
@@ -19,10 +23,8 @@ class UrlIn(FlaskForm):
 
     fifth_vid = StringField('name')
 
-# Modify JSON that stores FULL path of download dir here
 
-
-class DeleteVideo(object):
+class CrudMethod(object):
 
     def __init__(self, which_dir):
         self.which_dir = which_dir
@@ -44,7 +46,7 @@ class DeleteVideo(object):
         # First, remove "csrf_token" from vid_name
         try:
             del vid_name["csrf_token"]
-        except:
+        except KeyError:
             pass
         rihanna = os.path.join(os.getcwd(), self.which_dir)
         # Loop the music_dir

@@ -3,14 +3,14 @@ import json
 import os
 from urllib import parse
 
-# Flask Imports
-from flask import render_template, redirect, url_for, request, jsonify
+# Dependencies
+from flask import render_template, redirect, url_for, request
 import click
+from youtube_dl import YoutubeDL, DownloadError
 
 # Project imports
 import YTR.models as mod
-import YTR.ripper.downloader
-# from YTR.ripper import file_helpers
+from YTR.ripper import downloader
 from YTR import app
 
 # CsrfProtect(app)
@@ -29,28 +29,16 @@ def song_dir(which_dir):
         yield song_dict
 
 
-# Iterate form values
-def form_iter(url_list):
-    for ind in url_list.values():
-        if len(ind) > 5 and "youtube" in ind:
-            get_url, get_name = YTR.ripper.downloader.get_name(ind)
-            # Set up the Download class
-            get_song = YTR.ripper.downloader.Dl(link=get_url,
-                                                name=get_name)
-            # Download the song
-            get_song.song_dl()
-            # Convert it
-            get_song.convert_song()
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Register the WTForm
     form = mod.UrlIn()
     if request.method == 'POST':
-        user_url = form.data
+        songurl = form.data
+
+
         # Send the form data to form_iter for processing
-        form_iter(user_url)
+        # form_iter(user_url)
         return redirect(url_for('songs'))
 
     # Method == GET
@@ -64,7 +52,7 @@ def songs():
     # music_dir = "YTR/static/music"
 
     # Which directory are we in?
-    this_dir = mod.DeleteVideo(music_dir)
+    this_dir = mod.CrudMethod(music_dir)
     # song_list == list of dicts
     song_list = this_dir.songdir()
     if request.method == 'POST':
@@ -82,10 +70,18 @@ def checker():
     form_id = request.get_json()['input_id']
     form_url = request.get_json()['input_value']
 
-    # Send form_url to YTR.get_name
-    vid_url, vid_name = YTR.ripper.downloader.get_name(form_url)
-    return_dict = {'input_id': form_id, 'video_name': vid_name}
-    return json.dumps(return_dict)
+    # Use some YoutubeDL magic real quick
+    try:
+        with YoutubeDL({'outtmpl': '%(title)s'}) as ydl:
+            video_info = ydl.extract_info(form_url, download=False)
+            video_name = video_info.get('title', None)
+        # Return dict w/ that input_id & the name (title) of the video
+        return_dict = {'input_id': form_id, 'video_name': video_name}
+        return json.dumps(return_dict)
+
+    # If the URL is incorrect...
+    except DownloadError:
+        return json.dumps({"input_id": form_id, "error": "Double check that URL."})
 
 
 # Shutdown werkzeug server
@@ -106,6 +102,7 @@ def shutdown():
     else:
         click.echo("Shut down the server, I gotchu")
     func()
+
 
 """
 Notes:
