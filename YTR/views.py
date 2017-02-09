@@ -32,6 +32,13 @@ def song_dir(which_dir):
 # Conversion & Cleanup callback
 def cleanup():
     downloader.ConvertAll.song_getter()
+    downloader.Cleaner.mover()
+    downloader.Cleaner.destroyer()
+
+
+def clean_callback():
+    thrd = Thread(target=cleanup())
+    thrd.start()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -47,10 +54,15 @@ def index():
             # Download the video
             get_song.song_dl()
             downloader.ConvertAll.song_getter()
+            # Run the cleanup callback
+            clean_callback()
+            # Return a dict
+            return_dict = {"input_id": reqdta['input_id'], 'worked': True}
+            return json.dumps(return_dict)
 
         except DownloadError:
-            print("Ahhh fuck")
-        return redirect(url_for('songs'))
+            return_dict = {'input_id': reqdta['input_id'], 'worked': False}
+            return json.dumps(return_dict)
 
     # Method == GET
     return render_template('base_main.html', form=form)

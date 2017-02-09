@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b365216-6e08-4979-bf85-4ff7cd9b5e0a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/music/In Hearts Wake - Healer (Official Music Video).mkv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/music/In Hearts Wake - Healer (Official Music Video).mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/music/Northlane - Rot [Album Version].mkv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/music/Northlane - Rot [Album Version].mp3" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YTR/ripper/downloader.py" afterPath="$PROJECT_DIR$/YTR/ripper/downloader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YTR/static/css/YTR.css" afterPath="$PROJECT_DIR$/YTR/static/css/YTR.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YTR/static/js/ookillem.js" afterPath="$PROJECT_DIR$/YTR/static/js/ookillem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YTR/templates/base_main.html" afterPath="$PROJECT_DIR$/YTR/templates/base_main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/YTR/views.py" afterPath="$PROJECT_DIR$/YTR/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,6 +28,7 @@
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints>
+      <file url="file://$PROJECT_DIR$/YTR/ripper/downloader.py" />
       <file url="file://$PROJECT_DIR$/YTR/views.py" />
     </disable_hints>
   </component>
@@ -55,8 +58,8 @@
             <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/YTR/views.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="612">
-                    <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+                  <state relative-caret-position="216">
+                    <caret line="53" column="32" lean-forward="true" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
                     <folding>
                       <element signature="e#17#28#0" expanded="true" />
                     </folding>
@@ -72,11 +75,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="downloader.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="downloader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/YTR/ripper/downloader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7">
-              <caret line="99" column="14" lean-forward="false" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+            <state relative-caret-position="810">
+              <caret line="90" column="82" lean-forward="false" selection-start-line="90" selection-start-column="82" selection-end-line="90" selection-end-column="82" />
               <folding>
                 <element signature="e#17#26#0" expanded="true" />
               </folding>
@@ -84,15 +87,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ookillem.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ookillem.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/YTR/static/js/ookillem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-              <folding>
-                <marker date="1486625272136" expanded="true" signature="1026:2699" ph="{...}" />
-                <marker date="1486625272136" expanded="true" signature="1511:2133" ph="{...}" />
-              </folding>
+            <state relative-caret-position="792">
+              <caret line="74" column="67" lean-forward="false" selection-start-line="74" selection-start-column="67" selection-end-line="74" selection-end-column="67" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,6 +145,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/YTR/ripper/downloader.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YTR/views.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -184,9 +185,9 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/YTR/static/css/YTR.css" />
         <option value="$PROJECT_DIR$/YTR/templates/base_main.html" />
-        <option value="$PROJECT_DIR$/YTR/static/js/ookillem.js" />
-        <option value="$PROJECT_DIR$/YTR/ripper/downloader.py" />
         <option value="$PROJECT_DIR$/YTR/views.py" />
+        <option value="$PROJECT_DIR$/YTR/ripper/downloader.py" />
+        <option value="$PROJECT_DIR$/YTR/static/js/ookillem.js" />
       </list>
     </option>
   </component>
@@ -648,7 +649,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27547434" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25579762" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.04848911" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25860858" sideWeight="0.49531615" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -964,17 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YTR/static/js/ookillem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-          <folding>
-            <marker date="1486625272136" expanded="true" signature="1026:2699" ph="{...}" />
-            <marker date="1486625272136" expanded="true" signature="1511:2133" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YTR/templates/base_main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -983,23 +973,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/YTR/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="53" column="32" lean-forward="true" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+          <folding>
+            <element signature="e#17#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/YTR/ripper/downloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7">
-          <caret line="99" column="14" lean-forward="false" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+        <state relative-caret-position="810">
+          <caret line="90" column="82" lean-forward="false" selection-start-line="90" selection-start-column="82" selection-end-line="90" selection-end-column="82" />
           <folding>
             <element signature="e#17#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YTR/views.py">
+    <entry file="file://$PROJECT_DIR$/YTR/static/js/ookillem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#17#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="792">
+          <caret line="74" column="67" lean-forward="false" selection-start-line="74" selection-start-column="67" selection-end-line="74" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -70,6 +70,10 @@
             xm.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
+                    let jsresp = JSON.parse(this.responseText);
+                    // if (jsresp['worked'] == true) {
+                    //     document.getElementById(jsresp['input_id'])
+                    // }
                 }
             };
         }

@@ -1,5 +1,6 @@
 # Python imports
 import os
+import subprocess
 from subprocess import run
 # Dependencies
 from youtube_dl import YoutubeDL, DownloadError
@@ -79,10 +80,17 @@ class ConvertAll(object):
     @staticmethod
     def converter(songname):
         song, song_ext = os.path.splitext(songname)
+        # Get the path-safe version of song & songname
+        # songname = songname.replace(" ", "\ ")
+        # song = song.replace(" ", "\ ")
         # Run it through FFmpeg
-        run('ffmpeg -i "%s" -vn -ar 44100 -ac 2 -ab 200k -f mp3 "%s".mp3 | ffmpeg'
-            % (songname, song),
-            shell=True)
+        # run('ffmpeg -i %s -vn -ar 44100 -ac 2 -ab 200k -f mp3 %s.mp3 | ffmpeg'
+        #     % (songname, song),
+        #     shell=False)
+        # set_cmd = "ffmpeg -i {0}s -vn -ar 44100 -ac 2 -ab 200k -f mp3 {1}.mp3 | ffmpeg"
+        cmd = ["ffmpeg", "-i", str(songname), "-vn", "-ar", "44100", "-ac", str(2),
+               "-ab", "200k", "-f", "mp3", str(song + ".mp3")]
+        subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
     @staticmethod
     def song_getter():
@@ -109,6 +117,7 @@ class Cleaner:
         """
             Step 1: Move everything with .mp3 in last 4 letters to static/music
         """
+
         mdir = file_helpers.music_dir()
         getall = file_helpers.all_files(mdir)
         # Get the static music dir
@@ -122,8 +131,7 @@ class Cleaner:
                 # The song's future location
                 new_path = os.path.join(stat_mdir, ind)
                 os.rename(cur_path, new_path)
-                print("YTR.ripper.downloader.Cleaner renamed", ind,
-                      " Now it's @ --> ", new_path)
+                print("YTR.ripper.downloader.Cleaner renamed", ind, " Now it's @ --> ", new_path)
 
     @staticmethod
     def destroyer():
@@ -136,13 +144,12 @@ class Cleaner:
         getall = file_helpers.all_files(mdir)
         for ind in getall:
             this_song = os.path.join(mdir, ind)
-            print(this_song)
+            print("\n\n ripper.downloader.Cleaner.destroyer() -> ", this_song)
 
             # Make sure mp3 is NOT in filename && it's not a directory
             if ("mp3" not in ind[-4:]) and (not os.path.isdir(this_song)):
                 os.remove(this_song)
-                yield """ YTR.ripper.downloader.Cleaner.destroyer() has removed --> %s """\
-                      % this_song
+                print("""\n YTR.ripper.downloader.Cleaner.destroyer() has removed -->""", this_song)
 
 
 def test_dl():
