@@ -3,6 +3,7 @@ import json
 import os
 from urllib import parse
 from threading import Thread
+from operator import itemgetter
 # Dependencies
 from flask import render_template, redirect, url_for, request
 import click
@@ -15,6 +16,7 @@ from YTR import app
 
 # CsrfProtect(app)
 app.secret_key = '`\xd2\x88Z\xc6\xd6p\xc2\xab=\x1f\x02\x07\x0c\xb1'
+# app.jinja_env(auto_reload=True)
 music_folder = os.path.join(os.getcwd(), "YTR", "static", "music")
 
 
@@ -33,12 +35,15 @@ def song_dir(which_dir):
 def cleanup():
     downloader.ConvertAll.song_getter()
     downloader.Cleaner.mover()
+    # downloader.Cleaner.destroyer()
+
+
+def god(vurl):
+    get_song = downloader.Dl(link=vurl)
+    get_song.song_dl()
+    downloader.ConvertAll.song_getter()
+    downloader.Cleaner.mover()
     downloader.Cleaner.destroyer()
-
-
-def clean_callback():
-    thrd = Thread(target=cleanup())
-    thrd.start()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -48,16 +53,14 @@ def index():
     if request.method == 'POST':
         # print(request.data)
         reqdta = request.get_json(force=True)
-        print(reqdta)
+        # print(reqdta)
         try:
-            get_song = downloader.Dl(link=reqdta['input_value'])
-            # Download the video
-            get_song.song_dl()
-            downloader.ConvertAll.song_getter()
-            # Run the cleanup callback
-            clean_callback()
-            # Return a dict
-            return_dict = {"input_id": reqdta['input_id'], 'worked': True}
+            # get_song = downloader.Dl(link=reqdta['input_value'])
+            # get_song.song_dl()
+            # thrd = Thread(target=cleanup())
+            # thrd.start()
+            Thread(target=god(reqdta['input_value'])).start()
+            return_dict = {"input_id": reqdta['input_id'], 'worked': True, 'song_name': "song"}
             return json.dumps(return_dict)
 
         except DownloadError:
@@ -105,7 +108,7 @@ def songs():
         this_dir.byevideo(request.form)
         return redirect(url_for('songs'))
     return render_template('base_download.html',
-                           songs=song_list,
+                           songs=sorted(song_list, key=itemgetter("name")),
                            song_form=mod.UrlIn())
 
 

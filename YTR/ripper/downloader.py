@@ -2,6 +2,8 @@
 import os
 import subprocess
 from subprocess import run
+from threading import Thread
+
 # Dependencies
 from youtube_dl import YoutubeDL, DownloadError
 # Project Imports
@@ -24,6 +26,16 @@ class YtrLogger(object):
 def ytr_hook(d):
     if d['status'] == 'finished':
         yield ('Done downloading, now converting ...')
+    else:
+        yield ("I don't know wtf I'm doing")
+
+
+def dl_cb():
+    def set_cb():
+        ConvertAll.song_getter()
+        Cleaner.mover()
+        Cleaner.destroyer()
+    Thread(target=set_cb()).start()
 
 
 # download self.link
@@ -64,6 +76,7 @@ class Dl(object):
             music_dir = str(os.path.join("music", "%(title)s"))
             with YoutubeDL({'outtmpl': music_dir}) as ydl:
                 ydl.download([str(self.link)])
+
         except DownloadError:
             raise DownloadError
 
@@ -84,13 +97,15 @@ class ConvertAll(object):
         # songname = songname.replace(" ", "\ ")
         # song = song.replace(" ", "\ ")
         # Run it through FFmpeg
-        # run('ffmpeg -i %s -vn -ar 44100 -ac 2 -ab 200k -f mp3 %s.mp3 | ffmpeg'
+        # run('ffmpeg -i %s -vn -ar 44100 -ac 2 -ab 200k -f mp3 %s | ffmpeg'
         #     % (songname, song),
-        #     shell=False)
+        #     shell=True)
         # set_cmd = "ffmpeg -i {0}s -vn -ar 44100 -ac 2 -ab 200k -f mp3 {1}.mp3 | ffmpeg"
+        # print("\n \n \n \n \n \n \n \n \n \n ", songname)
         cmd = ["ffmpeg", "-i", str(songname), "-vn", "-ar", "44100", "-ac", str(2),
                "-ab", "200k", "-f", "mp3", str(song + ".mp3")]
-        subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        subprocess.run(cmd)
+        # subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
     @staticmethod
     def song_getter():
@@ -100,9 +115,12 @@ class ConvertAll(object):
         mdir = file_helpers.music_dir()
         getall = file_helpers.all_files(mdir)
         for ind in getall:
-            if ".mp3" not in ind[-4:]:
-                song_withpath = os.path.join(mdir, ind)
-                ConvertAll.converter(song_withpath)
+            # if ".mp3" not in ind[-4:]:
+            #     song_withpath = os.path.join(mdir, ind)
+            #     ConvertAll.converter(song_withpath)
+            song_withpath = os.path.join(mdir, ind)
+            ConvertAll.converter(song_withpath)
+        return True
 
 
 class Cleaner:
@@ -144,12 +162,10 @@ class Cleaner:
         getall = file_helpers.all_files(mdir)
         for ind in getall:
             this_song = os.path.join(mdir, ind)
-            print("\n\n ripper.downloader.Cleaner.destroyer() -> ", this_song)
-
             # Make sure mp3 is NOT in filename && it's not a directory
             if ("mp3" not in ind[-4:]) and (not os.path.isdir(this_song)):
                 os.remove(this_song)
-                print("""\n YTR.ripper.downloader.Cleaner.destroyer() has removed -->""", this_song)
+                # print("""\n YTR.ripper.downloader.Cleaner.destroyer() has removed -->""", this_song)
 
 
 def test_dl():

@@ -29,7 +29,6 @@
 
     document.getElementById("dlform").addEventListener("submit", function(evt){
         evt.preventDefault();
-        console.log(this);
         /**
          * 1. Iterate over the text input fields
          * 2. POST input.value[i] to this.getAttribute('action');
@@ -38,7 +37,6 @@
 
         // What URL you're posting it to
         const purl = String(this.action);
-        console.log(purl);
 
 
         let inField = this.querySelectorAll("input[type=text]");
@@ -46,7 +44,7 @@
             // Make sure it's a URL
             if (inField[i].value.length >= 10 &&
                 inField[i].value.includes("https://www.youtube.com/watch?")) {
-                console.log(inField[i].id, inField[i].value);
+                inField[i].nextElementSibling.classList.remove("hidden");
                 submitter(inField[i].id, inField[i].value);
 
             }
@@ -69,13 +67,38 @@
             xm.send(JSON.stringify(my_json));
             xm.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
+                    // console.log(this.responseText);
                     let jsresp = JSON.parse(this.responseText);
+                    document.getElementById(jsresp['input_id']).nextElementSibling.classList.add("hidden");
+                    snacky(jsresp['song_name']);
                     // if (jsresp['worked'] == true) {
                     //     document.getElementById(jsresp['input_id'])
                     // }
                 }
+                else if (this.status != 200) {
+                    let inField = document.querySelectorAll("input[type=text]");
+                    for (let i = 0; i < inField.length; i++) {
+                        inField[i].nextElementSibling.classList.add("")
+                    }
+                }
             };
+        }
+
+        function snacky(song_name) {
+            // Get the snackbar DIV
+            let x = document.getElementById("snackbar");
+
+            // Add the "show" class to DIV
+            x.className = "show";
+            // Add some inner HTML
+            let s_str = String(
+                song_name +
+                " was successfully downloaded"
+            );
+            x.insertAdjacentHTML("beforeend", s_str);
+
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function(){ x.className = x.className.replace("show", ""); x.innerHTML = ""; }, 6000);
         }
 
     });
@@ -96,6 +119,14 @@
  * ======================================================================*
  * ======================================================================*/
 
+    function checked_checker(inpId) {
+        let check_el = document.getElementById(inpId);
+        if (check_el.previousElementSibling.classList.contains("hidden")) {
+            return true;
+        }
+        else { return false;}
+    }
+
     /**  Input Field Event Listeners */
     document.getElementById("dlform").addEventListener("click", function(evt) {
         /**
@@ -107,20 +138,23 @@
              && (evt.target.getAttribute("type") == "text") )
         {
             evt.target.onblur = function() {
-                if (this.value.length >= 10) {
+                let iid = this.id;
+                let iv = this.value;
+                if (this.value.length >= 10
+                && checked_checker(iid)) {
                     // Send this element's id + its value to testUrl
-                    let iid = this.id;
-                    let iv = this.value;
+
                     // Send it to the checker URL
                     let curl = "/checker";
                     testUrl(iid, iv, curl);
-                    // Log it for your sanity
-                    console.log(iid);
                 }
-                else { }
+                else {
+                }
             }
         }
     });
+
+
 
     function testUrl(inid, inVal, inUrl) {
         /**
@@ -153,8 +187,6 @@
     }
 
 
-
-
     function urlConfirmer(vResp) {
         let ihtml;
 
@@ -170,59 +202,6 @@
             document.getElementById(which_in).previousElementSibling.classList.remove("hidden");
         }
     }
-
-
-
-
-    // TODO:  Add methods for handling server response (ie. the shell output)
-/**
- *      v-------v       Old Methods     v-------------v
- *=============================================================== */
-    //
-    //
-    // // Input checker
-    // document.querySelector("#get_music").onclick = function() {
-    //     let ins = document.querySelectorAll("input[type=text]");
-    //
-    //     for (let i=0; i < ins.length; i++) {
-    //         if (ins[i].value.length > 15) {
-    //             inJson(ins[i].id, ins[i].value);
-    //         }
-    //     }
-    //
-    // };
-    //
-    //
-    // // Trigger inJson for onblur of each input field
-    // document.getElementById('first_vid').onblur = function(){
-    //     if ((this.value).length > 15) {
-    //         inJson(event.target.id, this.value);
-    //     }
-    // };
-    // document.getElementById('second_vid').onblur = function(){
-    //     if ((this.value).length > 15) {
-    //         inJson(event.target.id, this.value);
-    //     }    };
-    // document.getElementById('third_vid').onblur = function(){
-    //     if ((this.value).length > 15) {
-    //         inJson(event.target.id, this.value);
-    //     }
-    // };
-    // document.getElementById('fourth_vid').onblur = function(){
-    //     if ((this.value).length > 15) {
-    //         inJson(event.target.id, this.value);
-    //     }
-    // };
-    // document.getElementById('fifth_vid').onblur = function(){
-    //     if ((this.value).length > 15) {
-    //         inJson(event.target.id, this.value);
-    //     }
-    // };
-    //
-    //
-    //
-    //
-
 
 })();
 

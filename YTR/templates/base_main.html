@@ -12,6 +12,7 @@
             <div id="main_input" class="url_cont b-no">
                 <p class="hidden"></p>
                 {{ form.first_vid }}
+                <div class="loader hidden"></div>
         {# Download Button #}
             </div>
         {# Dropdown Button #}
@@ -21,24 +22,31 @@
                 <div class="url_cont">
                     <p class="hidden"></p>
                     {{ form.second_vid }}
+                    <div class="loader hidden"></div>
                 </div>
                 <div class="url_cont">
                     <p class="hidden"></p>
                     {{ form.third_vid }}
+                    <div class="loader hidden"></div>
                 </div>
                 <div class="url_cont">
                     <p class="hidden"></p>
                     {{ form.fourth_vid }}
+                    <div class="loader hidden"></div>
                 </div>
                 <div class="url_cont b-no">
                     <p class="hidden"></p>
                     {{ form.fifth_vid }}
+                    <div class="loader hidden"></div>
                 </div>
             </div>
 
             <button id="get_music" class="bt dl-btn" type="submit">Get mp3</button>
         </form>
     </div>
+
+    <div id="snackbar"></div>
+
 
 
 {% endblock %}
