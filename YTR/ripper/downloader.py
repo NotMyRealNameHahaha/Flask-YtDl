@@ -1,41 +1,12 @@
 # Python imports
 import os
 import subprocess
-from subprocess import run
-from threading import Thread
-
 # Dependencies
 from youtube_dl import YoutubeDL, DownloadError
+from asynq import async
 # Project Imports
 from YTR.ripper import file_helpers
-
-
-class YtrLogger(object):
-    def debug(self, msg):
-        pass
-        # yield ('\nDegug -> ', msg, '  From: ', self)
-
-    def warning(self, msg):
-        pass
-        # yield ('\nWarning -> ', msg, '  From: ', self)
-
-    def error(self, msg):
-        yield ('Error:', msg, '  From: ', self)
-
-
-def ytr_hook(d):
-    if d['status'] == 'finished':
-        yield ('Done downloading, now converting ...')
-    else:
-        yield ("I don't know wtf I'm doing")
-
-
-def dl_cb():
-    def set_cb():
-        ConvertAll.song_getter()
-        Cleaner.mover()
-        Cleaner.destroyer()
-    Thread(target=set_cb()).start()
+from YTR.models import YtrConfig
 
 
 # download self.link
@@ -53,6 +24,7 @@ class Dl(object):
         return video_name
         # return self.link, video_name
 
+    @async()
     def song_dl(self):
         """
             If you would like to change download options, pass options to YoutubeDL
@@ -73,7 +45,7 @@ class Dl(object):
         All options can be found at:  https://github.com/rg3/youtube-dl/blob/master/youtube_dl/options.py
         """
         try:
-            music_dir = str(os.path.join("music", "%(title)s"))
+            music_dir = str(os.path.join(YtrConfig.outer_music, "%(title)s"))
             with YoutubeDL({'outtmpl': music_dir}) as ydl:
                 ydl.download([str(self.link)])
 
@@ -94,30 +66,18 @@ class ConvertAll(object):
     def converter(songname):
         song, song_ext = os.path.splitext(songname)
         # Get the path-safe version of song & songname
-        # songname = songname.replace(" ", "\ ")
-        # song = song.replace(" ", "\ ")
-        # Run it through FFmpeg
-        # run('ffmpeg -i %s -vn -ar 44100 -ac 2 -ab 200k -f mp3 %s | ffmpeg'
-        #     % (songname, song),
-        #     shell=True)
-        # set_cmd = "ffmpeg -i {0}s -vn -ar 44100 -ac 2 -ab 200k -f mp3 {1}.mp3 | ffmpeg"
-        # print("\n \n \n \n \n \n \n \n \n \n ", songname)
         cmd = ["ffmpeg", "-i", str(songname), "-vn", "-ar", "44100", "-ac", str(2),
                "-ab", "200k", "-f", "mp3", str(song + ".mp3")]
         subprocess.run(cmd)
-        # subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
     @staticmethod
     def song_getter():
         """
             Runs all of the songs in the (outer) music dir through self.converter
         """
-        mdir = file_helpers.music_dir()
+        mdir = YtrConfig.outer_music
         getall = file_helpers.all_files(mdir)
         for ind in getall:
-            # if ".mp3" not in ind[-4:]:
-            #     song_withpath = os.path.join(mdir, ind)
-            #     ConvertAll.converter(song_withpath)
             song_withpath = os.path.join(mdir, ind)
             ConvertAll.converter(song_withpath)
         return True
@@ -135,21 +95,17 @@ class Cleaner:
         """
             Step 1: Move everything with .mp3 in last 4 letters to static/music
         """
-
-        mdir = file_helpers.music_dir()
+        mdir = YtrConfig.outer_music
         getall = file_helpers.all_files(mdir)
-        # Get the static music dir
-        stat_mdir = os.path.join(os.getcwd(), "YTR", "static", "music")
-        # print("static music dir is at ->", stat_mdir)
+
         for ind in getall:
-            # sname, sext = os.path.splitext(ind)
             if "mp3" in ind[-4:]:
-                # The song's current location
+                # The song's current location + file name
                 cur_path = os.path.join(mdir, ind)
-                # The song's future location
-                new_path = os.path.join(stat_mdir, ind)
+                # The song's future name
+                new_path = os.path.join(YtrConfig.static_music, ind)
                 os.rename(cur_path, new_path)
-                print("YTR.ripper.downloader.Cleaner renamed", ind, " Now it's @ --> ", new_path)
+                # print("YTR.ripper.downloader.Cleaner renamed", ind, " Now it's @ --> ", new_path)
 
     @staticmethod
     def destroyer():
@@ -158,7 +114,7 @@ class Cleaner:
                 Remove anything in the outer music dir
                  that does NOT have ".mp3" in its last 4 letters
         """
-        mdir = file_helpers.music_dir()
+        mdir = YtrConfig.outer_music
         getall = file_helpers.all_files(mdir)
         for ind in getall:
             this_song = os.path.join(mdir, ind)
@@ -173,7 +129,6 @@ def test_dl():
     north_video = Dl(link=northlane)
     return north_video.song_dl()
 # print(my_test())
-# print(os.getcwd())
 
 
 def test_all():

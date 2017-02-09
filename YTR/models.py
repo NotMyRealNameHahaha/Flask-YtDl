@@ -12,6 +12,16 @@ from wtforms import StringField, BooleanField
 """
 
 
+class YtrConfig:
+    main_dir = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
+    # main_dir = os.environ['main_dir']
+    outer_music = os.path.join(main_dir, "music")
+    static_music = os.path.join(main_dir, "YTR", "static", "music")
+    # print(main_dir)
+    # print(outer_music)
+    # print(static_music)
+
+
 # URL input form
 class UrlIn(FlaskForm):
     first_vid = StringField('name', default="https://www.youtube.com/watch?v=44pTQe4Q9lg")
@@ -44,7 +54,7 @@ class CrudMethod(object):
         # vid_name = request.form
         # vid_name == { "parse.quote(name_of_my_song)": "on", "parse.quote(other_song)": "on"}
         # First, remove "csrf_token" from vid_name
-        rihanna = os.path.join(os.getcwd(), self.which_dir)
+        rihanna = os.path.join(YtrConfig.main_dir, self.which_dir)
         # Loop the music_dir
         for ind in os.listdir(rihanna):
             for url_key in vid_name.keys():

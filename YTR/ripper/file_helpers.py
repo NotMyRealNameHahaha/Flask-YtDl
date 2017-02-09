@@ -1,23 +1,6 @@
 # Python imports
 import os
-import datetime
-
-
-# Find out when a file was last modified
-def mod_date(filename):
-    t = os.path.getmtime(filename)
-    return datetime.datetime.fromtimestamp(t)
-
-
-# Get music directory in MAIN directory (not static folder)
-def music_dir():
-    for my_dirs in os.listdir(os.getcwd()):
-        if "music" in my_dirs\
-                and os.path.isdir(my_dirs):
-            return os.path.abspath(my_dirs)
-        # -- Returns ABSOLUTE path -- ##
-        else:
-            pass
+from YTR.models import YtrConfig
 
 
 # Return files in a certain directory
@@ -28,7 +11,7 @@ def all_files(which_dir):
 
 # Get path for FFmpeg
 def find_ffmpeg():
-    for my_files in os.listdir(os.getcwd()):
+    for my_files in os.listdir(YtrConfig.main_dir):
         if my_files == "ffmpeg":
             return os.path.abspath(my_files)
         else:
@@ -57,10 +40,3 @@ def clean_dir(move_me):
                 pass
         else:
             return False
-
-
-# Example usage of def modification_date(filename)
-def date_tester():
-    my_song = os.listdir(os.path.join("YTR", "static", "music"))[0]
-    print(mod_date(my_song))
-# date_tester()
