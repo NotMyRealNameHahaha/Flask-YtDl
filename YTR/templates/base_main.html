@@ -7,11 +7,12 @@
 {% block bod %}
     <div class="main">
         <form id="dlform" action="{{ url_for('index') }}" method="POST">
-            {{ form.csrf_token }}
+{#            {{ form.csrf_token }}#}
             <label>Enter Video URL:</label>
             <div id="main_input" class="url_cont b-no">
                 <p class="hidden"></p>
                 {{ form.first_vid }}
+        {# Download Button #}
             </div>
         {# Dropdown Button #}
             <div id="more_inputs" class="show_all"><span>+</span></div>

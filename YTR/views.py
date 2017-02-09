@@ -2,7 +2,7 @@
 import json
 import os
 from urllib import parse
-
+from threading import Thread
 # Dependencies
 from flask import render_template, redirect, url_for, request
 import click
@@ -29,20 +29,53 @@ def song_dir(which_dir):
         yield song_dict
 
 
+# Conversion & Cleanup callback
+def cleanup():
+    downloader.ConvertAll.song_getter()
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Register the WTForm
     form = mod.UrlIn()
     if request.method == 'POST':
-        songurl = form.data
+        # print(request.data)
+        reqdta = request.get_json(force=True)
+        print(reqdta)
+        try:
+            get_song = downloader.Dl(link=reqdta['input_value'])
+            # Download the video
+            get_song.song_dl()
+            downloader.ConvertAll.song_getter()
 
-
-        # Send the form data to form_iter for processing
-        # form_iter(user_url)
+        except DownloadError:
+            print("Ahhh fuck")
         return redirect(url_for('songs'))
 
     # Method == GET
     return render_template('base_main.html', form=form)
+
+
+@app.route('/checker', methods=['POST'])
+def checker():
+    # Parse the incoming JSON
+    form_id = request.get_json()['input_id']
+    form_url = request.get_json()['input_value']
+    # print("The element ID was -> ", form_id,
+    #       "\nVideo URL was -->", form_url)
+
+    # Use some YoutubeDL magic real quick
+    try:
+        with YoutubeDL({'outtmpl': '%(title)s'}) as ydl:
+            video_info = ydl.extract_info(form_url, download=False)
+            video_name = video_info.get('title', None)
+        # Return dict w/ that input_id & the name (title) of the video
+        return_dict = {'input_id': form_id, 'video_name': video_name}
+        return json.dumps(return_dict)
+
+    # If the URL is incorrect...
+    except DownloadError:
+        return json.dumps({"input_id": form_id, "error": "Double check that URL."})
 
 
 @app.route('/songs', methods=['GET', 'POST'])
@@ -62,26 +95,6 @@ def songs():
     return render_template('base_download.html',
                            songs=song_list,
                            song_form=mod.UrlIn())
-
-
-@app.route('/checker', methods=['POST'])
-def checker():
-    # Parse the incoming JSON
-    form_id = request.get_json()['input_id']
-    form_url = request.get_json()['input_value']
-
-    # Use some YoutubeDL magic real quick
-    try:
-        with YoutubeDL({'outtmpl': '%(title)s'}) as ydl:
-            video_info = ydl.extract_info(form_url, download=False)
-            video_name = video_info.get('title', None)
-        # Return dict w/ that input_id & the name (title) of the video
-        return_dict = {'input_id': form_id, 'video_name': video_name}
-        return json.dumps(return_dict)
-
-    # If the URL is incorrect...
-    except DownloadError:
-        return json.dumps({"input_id": form_id, "error": "Double check that URL."})
 
 
 # Shutdown werkzeug server

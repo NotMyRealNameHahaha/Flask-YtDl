@@ -90,21 +90,36 @@ p, a, span { letter-spacing: 0.06em;}
 .main input { border: none;}
 
 /* Download Music Page -> Button to show more input fields */
-.main form .show_all {
-    width: 45px; height: 45px;
+.main form .show_all
+,.main form .downloader{
     position: relative;
-    margin: auto auto auto 20%;
 
-    display: flex; justify-content: center; align-content: center;
+    justify-content: center;
+    align-content: center;
     background: #00a0e1;
-    color: white; font-size: 30px; text-shadow: 1px 1px black;
+    color: white;
+    text-shadow: 1px 1px black;
 
     border-radius: 50%;
     padding: 5px; text-align: center;
 }
+.main form .show_all {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    margin: auto auto auto 20%;
+    font-size: 30px;
+}
+.main form .downloader {
+    border: none;
+    margin: auto;
+    font-size: 27px;
+    width: 38px;
+    height: 38px;
+}
 
 .main form .url_cont {
-    width: 510px; max-width: 100%;
+    width: 600px; max-width: 100%;
     height: auto;
     margin: auto;
     border-bottom: 1px solid #757575;
@@ -152,7 +167,8 @@ p, a, span { letter-spacing: 0.06em;}
     height: auto; padding: 10px;
 
     /* Alignment && display */
-    display: block; margin: 35px auto; clear: both;
+    /*display: block; */
+    margin: 35px auto;
     /* Colors, fonts, borders, && backgrounds */
     font: inherit;
     font-size: 1.2em;

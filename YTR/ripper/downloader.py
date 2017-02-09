@@ -2,17 +2,19 @@
 import os
 from subprocess import run
 # Dependencies
-from youtube_dl import YoutubeDL
+from youtube_dl import YoutubeDL, DownloadError
 # Project Imports
 from YTR.ripper import file_helpers
 
 
 class YtrLogger(object):
     def debug(self, msg):
-        yield ('\nDegug -> ', msg, '  From: ', self)
+        pass
+        # yield ('\nDegug -> ', msg, '  From: ', self)
 
     def warning(self, msg):
-        yield ('\nWarning -> ', msg, '  From: ', self)
+        pass
+        # yield ('\nWarning -> ', msg, '  From: ', self)
 
     def error(self, msg):
         yield ('Error:', msg, '  From: ', self)
@@ -57,22 +59,12 @@ class Dl(object):
 
         All options can be found at:  https://github.com/rg3/youtube-dl/blob/master/youtube_dl/options.py
         """
-        music_dir = str(os.path.join("music", "%(title)s"))
-        ydl_ops = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '200'
-            }],
-            'outtmpl': music_dir,
-            'logger': YtrLogger(),
-            'progress_hooks': [ytr_hook]
-        }
-        with YoutubeDL(ydl_ops) as ydl:
-            ydl.download([str(self.link)])
-        # return self.name
-        yield YtrLogger(),
+        try:
+            music_dir = str(os.path.join("music", "%(title)s"))
+            with YoutubeDL({'outtmpl': music_dir}) as ydl:
+                ydl.download([str(self.link)])
+        except DownloadError:
+            raise DownloadError
 
 
 class ConvertAll(object):
@@ -92,7 +84,8 @@ class ConvertAll(object):
             % (songname, song),
             shell=True)
 
-    def song_getter(self):
+    @staticmethod
+    def song_getter():
         """
             Runs all of the songs in the (outer) music dir through self.converter
         """
@@ -101,7 +94,7 @@ class ConvertAll(object):
         for ind in getall:
             if ".mp3" not in ind[-4:]:
                 song_withpath = os.path.join(mdir, ind)
-                self.converter(song_withpath)
+                ConvertAll.converter(song_withpath)
 
 
 class Cleaner:
@@ -158,3 +151,11 @@ def test_dl():
     return north_video.song_dl()
 # print(my_test())
 # print(os.getcwd())
+
+
+def test_all():
+    nl = "https://www.youtube.com/watch?v=IjMuhtDkN7o"
+    nv = Dl(link=nl)
+    nv.song_dl()
+    ConvertAll.song_getter()
+# test_all()
