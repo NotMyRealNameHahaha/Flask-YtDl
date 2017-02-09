@@ -10,6 +10,9 @@ static/notes/
 static/non-minified
 .idea
 .idea/
+YTR_Flask/.idea
+Flask-YtDl/.idea
+.idea/*
 .DS_Store
 mypy
 YTR/static/music/
