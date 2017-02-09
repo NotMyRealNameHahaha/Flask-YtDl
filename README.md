@@ -11,8 +11,7 @@ The OSX version and Linux version only differ in two ways:
 
 
 ### Requirements
-Flask-YtDl is written in **Python 3.5.2** & has not been tested in other versions.  If you would like to rewrite it to improve compatability, please do.
-Dependencies can be found in requirements.txt.
+Flask-YtDl is written in **Python 3.6.0** & has not been tested in other versions; however, minimal compatability issues may occur if using Python 2.x.
 
 ### Installation
 Clone the git repo

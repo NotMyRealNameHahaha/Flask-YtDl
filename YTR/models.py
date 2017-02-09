@@ -14,12 +14,8 @@ from wtforms import StringField, BooleanField
 
 class YtrConfig:
     main_dir = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
-    # main_dir = os.environ['main_dir']
     outer_music = os.path.join(main_dir, "music")
     static_music = os.path.join(main_dir, "YTR", "static", "music")
-    # print(main_dir)
-    # print(outer_music)
-    # print(static_music)
 
 
 # URL input form
@@ -51,14 +47,12 @@ class CrudMethod(object):
 
     # Delete video function
     def byevideo(self, vid_name):
-        # vid_name = request.form
         # vid_name == { "parse.quote(name_of_my_song)": "on", "parse.quote(other_song)": "on"}
         # First, remove "csrf_token" from vid_name
         rihanna = os.path.join(YtrConfig.main_dir, self.which_dir)
         # Loop the music_dir
         for ind in os.listdir(rihanna):
             for url_key in vid_name.keys():
-                # print(url_key)
                 if ind == parse.unquote(url_key) and ("csrf_token" not in url_key):
                     try:
                         delete_video = os.path.join(rihanna, ind)
@@ -66,8 +60,7 @@ class CrudMethod(object):
                         os.remove(delete_video)
                         # print("\nYTR deleted this video:", delete_video)
                     except RuntimeError as e:
-                        print("\nWell, I didn't remove this video:", ind,
-                              "\n And it threw this error:", e)
+                        return str(e)
                 else:
                     pass
 
