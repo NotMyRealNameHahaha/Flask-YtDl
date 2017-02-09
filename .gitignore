@@ -38,4 +38,8 @@ var/
 # virtualenv
 .venv/
 venv/
+<<<<<<< HEAD
 ENV/
+=======
+ENV/
+>>>>>>> 004d6d9d06eaa42327b33e664e66e10573dd2b2e
