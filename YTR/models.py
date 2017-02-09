@@ -44,16 +44,12 @@ class CrudMethod(object):
         # vid_name = request.form
         # vid_name == { "parse.quote(name_of_my_song)": "on", "parse.quote(other_song)": "on"}
         # First, remove "csrf_token" from vid_name
-        try:
-            del vid_name["csrf_token"]
-        except KeyError:
-            pass
         rihanna = os.path.join(os.getcwd(), self.which_dir)
         # Loop the music_dir
         for ind in os.listdir(rihanna):
             for url_key in vid_name.keys():
                 # print(url_key)
-                if ind == parse.unquote(url_key):
+                if ind == parse.unquote(url_key) and ("csrf_token" not in url_key):
                     try:
                         delete_video = os.path.join(rihanna, ind)
                         # print(delete_video)

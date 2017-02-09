@@ -7,23 +7,26 @@
 {# Body #}
 {% block bod %}
 
-    <div class="main">
+    <div class="main musica">
 
 {#  -----  File Output ---------- #}
-<form class="f-output" action="{{ url_for('songs') }}" method="POST">
+<form id="delete_form" class="f-output" action="{{ url_for('songs') }}" method="POST">
+        {{ song_form.csrf_token }}
         <div class="music_dir s-near">
         {#  --  Headers -- #}
-            <div class="row">
+            <div class="row h-row">
+                <div id="selectallb" class="c_selectall selected">
+                    <span class="fa fa-plus"></span>
+                </div>
                 <div class="cd-eight cm-eight sd-c song-h">
-                    <p><b>Songs</b></p>
+                    <h2><b>Songs</b></h2>
                 </div>
             </div>
 
             {% for song in songs %}
-                <div class="row">
-                    <div class="cd-eight cm-eight sd-c">
+                <div class="row song-row">
+                    <div class="cd-ninefive cm-ninefive sd-c">
                         <label for="{{ song['id'] }}"></label>
-                        {{ song_form.csrf_token }}
                         <input name="{{ song['id'] }}" id="{{ song['id'] }}" type="checkbox">
                         <p>
                             <a href="{{ song['url'] }}"
@@ -44,7 +47,7 @@
                 <span class="fa fa-close"></span>
                 <span>Cancel</span>
             </button>
-            <button type="submit" class="bt s-near del-btn">
+            <button id="deleter" type="submit" class="bt s-near del-btn">
                 <span class="fa fa-trash"></span>
                 <span>Delete</span>
             </button>

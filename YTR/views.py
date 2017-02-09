@@ -105,6 +105,8 @@ def songs():
     song_list = this_dir.songdir()
     if request.method == 'POST':
         # song_names = (x['id'] for x in song_list)
+        # print(request.form)
+        # print(dict(request.form))
         this_dir.byevideo(request.form)
         return redirect(url_for('songs'))
     return render_template('base_download.html',
