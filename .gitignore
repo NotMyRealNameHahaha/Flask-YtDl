@@ -10,8 +10,6 @@ static/notes/
 static/non-minified
 .idea
 .idea/
-YTR_Flask/.idea
-Flask-YtDl/.idea
 .idea/*
 .DS_Store
 mypy
@@ -41,8 +39,5 @@ var/
 # virtualenv
 .venv/
 venv/
-<<<<<<< HEAD
 ENV/
-=======
 ENV/
->>>>>>> 004d6d9d06eaa42327b33e664e66e10573dd2b2e
